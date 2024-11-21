@@ -1,14 +1,15 @@
 import { navLinks } from "../constants";
 import Button from "@mui/material/Button";
+// import Button from "@mui/material/Button";
 
 function NavBar() {
   return (
-    <nav className="w-full flex py-6 justify-between items-center px-10">
+    <nav className="w-full flex py-4 justify-between items-center px-10 border-2 fixed">
       <h1 className="text-xl font-medium">Select Serv</h1>
       <ul className="list-none min-[840px]:flex hidden justify-start items-center flex-1">
         {navLinks.map((nav, index) => (
           <li key={nav.id} className={`ml-5`}>
-            <a href={`#${nav.id}`}>{nav.title}</a>
+            <a href={`${nav.id}`}>{nav.title}</a>
           </li>
         ))}
       </ul>
