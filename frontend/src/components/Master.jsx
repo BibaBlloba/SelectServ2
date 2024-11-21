@@ -1,4 +1,5 @@
-import { Button } from "@mui/material";
+// import { Button } from "@mui/material";
+import { Button } from "antd";
 import image1 from "../assets/image1.png";
 
 function Master() {
@@ -13,7 +14,9 @@ function Master() {
           Строим и поддерживаем IT-инфраструктуру компаний, которые создают
           и развивают цифровые продукты.
         </div>
-        <Button variant="contained">В панель управления</Button>
+        <Button variant="contained" className="flex" danger type="primary">
+          В панель управления
+        </Button>
       </div>
       <div className="hidden min-[1000px]:inline">
         <img className="aspect-[6/4] w-[460px]" src={image1} />

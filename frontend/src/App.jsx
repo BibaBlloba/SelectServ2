@@ -1,15 +1,19 @@
 // import { useState } from "react";
-import { NavBar, Master } from "./components";
+import { NavBar, Master, Price } from "./components";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <></>,
-  },
+  // {
+  //   path: "/",
+  //   element: <Master />,
+  // },
   {
     path: "/home",
     element: <Master />,
+  },
+  {
+    path: "/price",
+    element: <Price />,
   },
 ]);
 
