@@ -15,7 +15,7 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <div>
+    <div className="bg-gradient-to-r to-black from-[#701E1E]">
       <NavBar />
       <RouterProvider router={router} />
     </div>
