@@ -4,10 +4,10 @@ import { Button } from "antd";
 function Price() {
   return (
     <div className="flex flex-col justify-center items-center min-h-screen pb-20 bg-white">
-      <div className="flex w-full font-mainFont justify-center text-5xl pt-24 mb-16">
+      <div className="flex w-full font-mainFont justify-center sm:text-5xl text-4xl pt-24 sm:pt-24 sm:mb-16 mb-0">
         Выбери свой план
       </div>
-      <div className="flex sm:flex-row flex-col gap-5 shrink-0">
+      <div className="flex sm:flex-row sm:p-0 p-9 flex-col gap-5 shrink-0">
         {pricing.map((price, index) => (
           <div
             key="price.id"
