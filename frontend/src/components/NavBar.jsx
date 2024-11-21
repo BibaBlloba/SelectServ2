@@ -1,6 +1,7 @@
 import { navLinks } from "../constants";
 // import Button from "@mui/material/Button";
 import { Button } from "antd";
+import MobileDrawer from "./MobileDrawer";
 // import Button from "@mui/material/Button";
 
 function NavBar() {
@@ -21,9 +22,15 @@ function NavBar() {
           </Button>
         </a>
         <a href="#console">
-          <Button variant="contained" className="flex" danger type="primary">
+          <Button
+            variant="contained"
+            className="sm:flex hidden"
+            danger
+            type="primary"
+          >
             В панель управления
           </Button>
+          <MobileDrawer />
         </a>
       </div>
     </nav>

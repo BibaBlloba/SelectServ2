@@ -6,9 +6,14 @@ function Master() {
   return (
     <div className="flex flex-row  justify-center items-center h-screen">
       <div className="mx-10">
-        <div className="text-white text-4xl font-bold mb-5">
+        <div className="text-white text-4xl sm:inline hidden font-bold mb-5">
           <h1>Серверы.</h1>
           <h1>Облако. Дата-центры.</h1>
+        </div>
+        <div className="text-white text-4xl sm:hidden font-bold mb-5">
+          <h1>Серверы.</h1>
+          <h1>Облако.</h1>
+          <h1>Дата-центры.</h1>
         </div>
         <div className="text-white max-w-[500px] mb-5">
           Строим и поддерживаем IT-инфраструктуру компаний, которые создают

@@ -1,12 +1,12 @@
 // import { useState } from "react";
-import { NavBar, Master, Price } from "./components";
+import { NavBar, Master, Price, MobileDrawer } from "./components";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const router = createBrowserRouter([
-  // {
-  //   path: "/",
-  //   element: <Master />,
-  // },
+  {
+    path: "/",
+    element: <Master />,
+  },
   {
     path: "/home",
     element: <Master />,
