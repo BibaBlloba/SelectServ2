@@ -1,5 +1,5 @@
 // import { useState } from "react";
-import { NavBar, Master, Price, MobileDrawer } from "./components";
+import { NavBar, Master, Price, MastRegister } from "./components";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const router = createBrowserRouter([
@@ -9,7 +9,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/home",
-    element: <Master />,
+    element: (
+      <>
+        <Master />
+      </>
+    ),
   },
   {
     path: "/price",
