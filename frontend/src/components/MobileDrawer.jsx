@@ -12,6 +12,7 @@ function MobileDrawer() {
         danger
         type="primary"
         onClick={() => setIsDrawerOpen(true)}
+        className="block sm:hidden"
       >
         Меню
       </Button>
