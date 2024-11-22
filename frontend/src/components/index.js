@@ -5,5 +5,15 @@ import MobileDrawer from "./MobileDrawer.jsx";
 import MastRegister from "./MastRegister.jsx";
 import Info from "./Info.jsx";
 import Footer from "./Footer.jsx";
+import MobileFooter from "./MobileFooter.jsx";
 
-export { NavBar, Master, Price, MobileDrawer, MastRegister, Info, Footer };
+export {
+  NavBar,
+  Master,
+  Price,
+  MobileDrawer,
+  MastRegister,
+  Info,
+  Footer,
+  MobileFooter,
+};

@@ -1,7 +1,7 @@
 // import { Button } from "@mui/material";
 import { Button } from "antd";
 import image1 from "../assets/image1.png";
-import { Info, Footer, Price } from "./index";
+import { Info, Footer, MobileFooter, Price } from "./index";
 
 function Master() {
   return (
@@ -32,6 +32,7 @@ function Master() {
       <Price />
       <Info />
       <Footer />
+      <MobileFooter />
     </div>
   );
 }
