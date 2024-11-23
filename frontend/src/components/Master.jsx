@@ -6,7 +6,7 @@ import { Info, Footer, MobileFooter, Price } from "./index";
 function Master() {
   return (
     <div>
-      <div className="flex flex-row  justify-center items-center min-h-screen">
+      <div className="flex flex-row justify-center items-center min-h-screen 2xl:gap-[200px]">
         <div className="mx-10">
           <div className="text-white text-4xl sm:inline hidden font-bold mb-5">
             <h1>Серверы.</h1>
@@ -26,13 +26,13 @@ function Master() {
           </Button>
         </div>
         <div className="hidden min-[1000px]:inline">
-          <img className="aspect-[6/4] w-[460px]" src={image1} />
+          <img className="aspect-[6/4] w-[460px] 2xl:w-[740px]" src={image1} />
         </div>
       </div>
       <Price />
       <Info />
       <Footer />
-      <MobileFooter />
+      {/* <MobileFooter /> */}
     </div>
   );
 }
