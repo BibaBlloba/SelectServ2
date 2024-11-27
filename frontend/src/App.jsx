@@ -1,5 +1,5 @@
 // import { useState } from "react";
-import { NavBar, Master, Price, MastRegister } from "./components";
+import { NavBar, Master, Price, MasterRegister } from "./components";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const router = createBrowserRouter([
