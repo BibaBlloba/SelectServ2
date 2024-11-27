@@ -8,21 +8,23 @@ const Footer = () => {
         Select Serv
       </h1>
 
-      <div className="flex justify-start gap-20 pl-5">
+      <div className="flex justify-start gap-20 pl-5 text-gray-200">
         <div className="flex flex-col gap-1">
-          <p>О нас</p>
+          <p className="text-gray-400">О нас</p>
+          <p>Безопасность</p>
+          <p>Дата-центры</p>
         </div>
         <div className="flex flex-col gap-1">
-          <h1>Работа</h1>
-          <a className="text-gray-200">Вакансии</a>
+          <h1 className="text-gray-400">Работа</h1>
+          <a className="">Вакансии</a>
         </div>
         <div className="flex flex-col gap-1">
-          <h1 className="mb-2">Документация</h1>
-          <a className="text-gray-200">Руководство Пользователя</a>
-          <a className="text-gray-200">API</a>
+          <h1 className="mb-2 text-gray-400">Документация</h1>
+          <a className="">Руководство Пользователя</a>
+          <a className="">API</a>
         </div>
         <div>
-          <h1 className="mb-2">Соц. Сети</h1>
+          <h1 className="mb-2 text-gray-400">Соц. Сети</h1>
           <div className="flex gap-2">
             <a>
               <Button color="default" variant="outlined" shape="circle">

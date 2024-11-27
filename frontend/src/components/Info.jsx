@@ -59,9 +59,9 @@ const Info = () => {
             </div>
           </div>
         </div>
-        <div className="bg-[url(./assets/blue_bg.png)] bg-cover min-h-screen flex flex-col justify-start items-center text-white p-24">
-          <h1 className="text-5xl">Инфоструктура по всей России</h1>
-          <div className="flex flex-row justify-around p-16 text-lg">
+        <div className="bg-[url(./assets/blue_bg.png)] bg-cover min-h-screen flex flex-col justify-start items-center text-white sm:p-24 p-5 sm:bg-center bg-[left_bottom]">
+          <h1 className="sm:text-5xl text-3xl">Инфоструктура по всей России</h1>
+          <div className="flex sm:flex-row flex-col gap-10 sm:gap-0 justify-around sm:p-16 p-5 text-lg">
             <div className="max-w-[350px]">
               У нас 6 своих дата-центров в Москве, Санкт-Петербурге и
               Ленинградской области. И партнерский — в Новосибирске.

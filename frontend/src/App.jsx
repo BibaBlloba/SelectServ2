@@ -19,6 +19,10 @@ const router = createBrowserRouter([
     path: "/price",
     element: <Price />,
   },
+  {
+    path: "/auth",
+    element: <MasterRegister />,
+  },
 ]);
 
 function App() {
