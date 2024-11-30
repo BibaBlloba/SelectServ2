@@ -10,7 +10,7 @@ const onFinishFailed = (errorInfo) => {
 const MasterRegister = () => {
   return (
     <div className="bg-white p-5 hidden sm:block">
-      <div className="max-h-[570px] bg-[url(./assets/MasterRegister.jpg)] bg-cover bg-right rounded-2xl flex flex-row p-12 justify-between">
+      <div className="max-h-[670px] bg-[url(./assets/MasterRegister.jpg)] bg-cover bg-right rounded-2xl flex flex-row p-12 justify-between">
         <div className="flex flex-col justify-between ">
           <h1 className="text-white text-5xl max-w-[200px]">
             Начните пользоваться продуктами сейчас
