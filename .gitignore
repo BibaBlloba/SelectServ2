@@ -9,6 +9,7 @@ lerna-debug.log*
 .venv
 certs
 .env
+__pycache__
 
 node_modules
 dist
