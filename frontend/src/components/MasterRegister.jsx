@@ -35,7 +35,7 @@ const MasterRegister = () => {
               name="email"
               rules={[
                 {
-                  required: true,
+                  required: false,
                   message: "Пожайлуста, введите почту",
                 },
               ]}
