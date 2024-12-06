@@ -1,13 +1,27 @@
-import { Button, Checkbox, Form, Input } from "antd";
+import { Button, Checkbox, Divider, Form, Input } from "antd";
+import { useRef, useState, useEffect } from "react";
+import { FaGoogle, FaSteam, FaYandex } from "react-icons/fa";
 
-const onFinish = (values) => {
-  console.log("Success:", values);
-};
-const onFinishFailed = (errorInfo) => {
-  console.log("Failed:", errorInfo);
-};
+const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
+const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.[0-9])(?=.*[!@#$%^&*]).{8.36}$/;
+
+
+
 
 const MasterRegister = () => {
+  const [loing, setLogin] = useState('');
+  const [password, setPassword] = useState('');
+
+  const onFinish = (values) => {
+    console.log("Success:", values.email);
+    setLogin(values.email);
+    setPassword(values.password);
+  };
+
+  const onFinishFailed = (errorInfo) => {
+    console.log("Failed:", errorInfo);
+  };
+
   return (
     <div className="bg-white p-5 hidden sm:block">
       <div className="max-h-[670px] bg-[url(./assets/MasterRegister.jpg)] bg-cover bg-right rounded-2xl flex flex-row p-12 justify-between">
@@ -35,7 +49,7 @@ const MasterRegister = () => {
               name="email"
               rules={[
                 {
-                  required: false,
+                  required: true,
                   message: "Пожайлуста, введите почту",
                 },
               ]}
@@ -76,7 +90,7 @@ const MasterRegister = () => {
               label={null}
               rules={[
                 {
-                  required: true,
+                  required: false,
                   message: "Обязательно для регистрации",
                 },
               ]}
@@ -94,6 +108,12 @@ const MasterRegister = () => {
                 Подтвердить
               </Button>
             </Form.Item>
+            <Divider >or Login with</Divider>
+            <div className="flex flex-row justify-start gap-5">
+              <Button><FaGoogle style={{ fontSize: 18 }} /></Button>
+              <Button><FaSteam style={{ fontSize: 18 }} /></Button>
+              <Button><FaYandex style={{ fontSize: 18 }} /></Button>
+            </div>
           </Form>
         </div>
       </div>
