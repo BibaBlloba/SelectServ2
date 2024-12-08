@@ -1,5 +1,5 @@
 // import { useState } from "react";
-import { NavBar, Master, Price, MasterRegister, Profile, ProfileNav1, ProfileNav2, ProfileNav3, ProfileNav4 } from "./components";
+import { NavBar, Master, Price, MasterRegister, Profile, ProfileGeneral, ProfileNotifications, ProfileMoney, ProfileInfo } from "./components";
 import { BrowserRouter, createBrowserRouter, Route, RouterProvider, Routes } from "react-router-dom";
 
 const router = createBrowserRouter([
@@ -40,10 +40,10 @@ function App() {
           <Route path="price" element={<Price />} />
           <Route path="auth" element={<MasterRegister />} />
           <Route path="profile" element={<Profile />}>
-            <Route path="nav1" element={<ProfileNav1 />} />
-            <Route path="nav2" element={<ProfileNav2 />} />
-            <Route path="nav3" element={<ProfileNav3 />} />
-            <Route path="nav4" element={<ProfileNav4 />} />
+            <Route path="nav1" element={<ProfileGeneral />} />
+            <Route path="nav2" element={<ProfileMoney />} />
+            <Route path="nav3" element={<ProfileNotifications />} />
+            <Route path="nav4" element={<ProfileInfo />} />
           </Route>
         </Routes>
       </div>
