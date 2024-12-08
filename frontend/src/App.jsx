@@ -1,5 +1,5 @@
 // import { useState } from "react";
-import { NavBar, Master, Price, MasterRegister } from "./components";
+import { NavBar, Master, Price, MasterRegister, Profile } from "./components";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const router = createBrowserRouter([
@@ -22,6 +22,10 @@ const router = createBrowserRouter([
   {
     path: "/auth",
     element: <MasterRegister />,
+  },
+  {
+    path: "/profile",
+    element: <Profile />,
   },
 ]);
 
