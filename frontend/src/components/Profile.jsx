@@ -3,7 +3,7 @@ import React from 'react'
 import { FaInfoCircle, FaMoneyBill } from 'react-icons/fa'
 import { IoPerson } from 'react-icons/io5'
 import { TbBellRingingFilled } from 'react-icons/tb'
-import { Route, Routes, useNavigate } from 'react-router-dom'
+import { Outlet, Route, Routes, useNavigate } from 'react-router-dom'
 
 const items = [
   {
@@ -42,21 +42,10 @@ const Profile = () => {
             navigate(key)
           }}
         ></Menu>
-        <Content />
+        <div className='ml-20'>
+          <Outlet />
+        </div>
       </div>
-    </div>
-  )
-}
-
-function Content() {
-  return (
-    <div>
-      <Routes>
-        <Route path="/" element={<div>a</div>}></Route>
-        <Route path="/nav2" element={<div>b</div>}></Route>
-        <Route path="/nav3" element={<div>c</div>}></Route>
-        <Route path="/nav4" element={<div>d</div>}></Route>
-      </Routes>
     </div>
   )
 }
