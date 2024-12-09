@@ -27,10 +27,10 @@ class UserLoginSchema(BaseModel):
 @app.post("/login")
 async def login(creds: UserLoginSchema):
     if creds.username == "test" and creds.password == "test1":
-        token = ...
+        token = security.create_access_token(uid="123")
         return {"access_token": token}
     else:
-        raise HTTPException(status_code=401)
+        raise HTTPException(status_code=401, detail="Incorrect username or password")
 
 
 @app.get("/protected")
