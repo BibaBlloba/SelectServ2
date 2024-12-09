@@ -18,7 +18,7 @@ class Settings(BaseSettings):
 
     @property
     def JWT_ACCESS_COOKIE_NAME(self):
-        return self.JWT_ACCESS_COOKIE_NAME
+        return self.JWT_ACCESS_COOKIE_NAME_P
 
     @property
     def DATABASE_URL_psycopg(self):
