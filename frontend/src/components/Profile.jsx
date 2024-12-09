@@ -42,7 +42,7 @@ const Profile = () => {
             navigate(key)
           }}
         ></Menu>
-        <div className='ml-20 text-xl'>
+        <div className='ml-20 text-xl w-full'>
           <Outlet />
         </div>
       </div>
