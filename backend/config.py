@@ -10,10 +10,15 @@ class Settings(BaseSettings):
     JWT_SECRET_KEY_P: str
     JWT_ALGORITHM_P: str
     JWT_ACCESS_TOKEN_EXPIRE_MINUTES_P: int
+    JWT_ACCESS_COOKIE_NAME_P: str
 
     @property
     def DATABASE_URL_asyncpg(self):
         return f"postgresql+asyncpg://{self.DB_USER}:{self.DB_PASS}@{self.DB_HOST}:{self.DB_PORT}/{self.DB_NAME}"
+
+    @property
+    def JWT_ACCESS_COOKIE_NAME(self):
+        return self.JWT_ACCESS_COOKIE_NAME
 
     @property
     def DATABASE_URL_psycopg(self):

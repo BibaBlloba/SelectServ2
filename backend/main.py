@@ -1,6 +1,8 @@
 from typing import Annotated
 
+from authx import AuthX, AuthXConfig
 from fastapi import Depends, FastAPI, HTTPException, status
+from pydantic import BaseModel
 from sqlalchemy.ext.asyncio.session import AsyncSession
 
 import auth
@@ -8,30 +10,28 @@ from database import *
 from models import *
 
 app = FastAPI()
-app.include_router(auth.router)
+
+config = AuthXConfig()
+config.JWT_SECRET_KEY = settings.JWT_SECRET_KEY
+config.JWT_ACCESS_COOKIE_NAME = settings.JWT_ACCESS_COOKIE_NAME
+config.JWT_TOKEN_LOCATION = ["cookies"]
+
+security = AuthX(config=config)
 
 
-async def db():
-    async with async_session() as session:
-        yield session
+class UserLoginSchema(BaseModel):
+    username: str
+    password: str
 
 
-SessionDap = Annotated[AsyncSession, Depends(db)]
-userDap = Annotated[dict, Depends(auth.get_current_user)]
+@app.post("/login")
+async def login(creds: UserLoginSchema):
+    if creds.username == "test" and creds.password == "test1":
+        token = ...
+        return {"access_token": token}
+    else:
+        raise HTTPException(status_code=401)
 
 
-@app.post("/tables")
-async def tables():
-    async with async_engine.begin() as conn:
-        # await conn.run_sync(Base.metadata.drop_all)
-        await conn.run_sync(Base.metadata.create_all)
-    return {"ok": True}
-
-
-@app.get("/", status_code=status.HTTP_200_OK)
-async def testUser(user: userDap, db: SessionDap):
-    if user is None:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED, detail="Authentication Failed"
-        )
-    return {"User": user}
+@app.get("/protected")
+async def protected(): ...
