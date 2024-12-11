@@ -1,14 +1,21 @@
 import logging
-import uuid
 from typing import Optional
 
-from fastapi import Depends, Request
-from fastapi_users import BaseUserManager, IntegerIDMixin, UUIDIDMixin
+from fastapi import Request
+from fastapi_users import BaseUserManager, IntegerIDMixin
 
 from config import settings
 from models import UserModel
 
 log = logging.getLogger(__name__)
+log.setLevel(logging.DEBUG)
+handler = logging.FileHandler(filename="logs.log")
+formatter = logging.Formatter(
+    "%(asctime)s : %(levelname)s : %(message)s ", datefmt="%Y/%m/%d %H:%M:%S"
+)
+handler.setLevel(logging.DEBUG)
+handler.setFormatter(formatter)
+log.addHandler(handler)
 
 
 class UserManager(IntegerIDMixin, BaseUserManager[UserModel, int]):
