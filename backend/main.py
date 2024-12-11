@@ -1,3 +1,4 @@
+import logging
 from typing import Annotated
 
 from authx import AuthX, AuthXConfig
@@ -10,6 +11,15 @@ import auth_router
 from database import *
 from models import *
 
+log = logging.getLogger(__name__)
+log.setLevel(logging.DEBUG)
+handler = logging.FileHandler(filename="logs.log")
+formatter = logging.Formatter(
+    "%(asctime)s : %(levelname)s : %(message)s ", datefmt="%Y/%m/%d %H:%M:%S"
+)
+handler.setLevel(logging.DEBUG)
+handler.setFormatter(formatter)
+log.addHandler(handler)
 app = FastAPI()
 
 
@@ -25,4 +35,5 @@ async def create_tables():
     async with async_engine.begin() as conn:
         await conn.run_sync(Base.metadata.drop_all)
         await conn.run_sync(Base.metadata.create_all)
+        log.warning("Drop Tables")
     return {"ok": True}
