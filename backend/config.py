@@ -11,6 +11,16 @@ class Settings(BaseSettings):
     JWT_ALGORITHM_P: str
     JWT_ACCESS_TOKEN_EXPIRE_MINUTES_P: int
     JWT_ACCESS_COOKIE_NAME_P: str
+    RESET_PASSWORD_TOKEN_SECRET_P: str
+    VERIFICATION_TOKEN_SECRET_P: str
+
+    @property
+    def RESET_PASSWORD_TOKEN_SECRET(self):
+        return self.RESET_PASSWORD_TOKEN_SECRET_P
+
+    @property
+    def VERIFICATION_TOKEN_SECRET(self):
+        return self.VERIFICATION_TOKEN_SECRET_P
 
     @property
     def DATABASE_URL_asyncpg(self):
