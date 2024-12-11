@@ -8,6 +8,7 @@ from pydantic import BaseModel
 from sqlalchemy.ext.asyncio.session import AsyncSession, async_sessionmaker
 
 import auth_router
+import users_router
 from database import *
 from models import *
 
@@ -24,6 +25,7 @@ app = FastAPI()
 
 
 app.include_router(auth_router.router)
+app.include_router(users_router.router)
 
 
 async def db(session: AsyncSession = Depends(create_async_session)):
