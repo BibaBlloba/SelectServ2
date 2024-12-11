@@ -16,17 +16,8 @@ app = FastAPI()
 app.include_router(auth_router.router)
 
 
-async def create_async_session():
-    async with async_session() as session:
-        yield session
-
-
 async def db(session: AsyncSession = Depends(create_async_session)):
     yield SQLAlchemyUserDatabase(session, UserModel)
-
-
-async def get_access_token_db(session: AsyncSession = Depends(create_async_session)):
-    yield SQLAlchemyAccessTokenDatabase(session, AccessToken)
 
 
 @app.post("/tables")
