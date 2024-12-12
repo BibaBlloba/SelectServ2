@@ -1,5 +1,5 @@
 // import { useState } from "react";
-import { NavBar, Master, Price, MasterRegister, Profile, ProfileGeneral, ProfileNotifications, ProfileMoney, ProfileInfo } from "./components";
+import { NavBar, Master, Price, MasterRegister, Profile, ProfileGeneral, ProfileNotifications, ProfileMoney, ProfileInfo, Console } from "./components";
 import { BrowserRouter, createBrowserRouter, Route, RouterProvider, Routes } from "react-router-dom";
 
 const router = createBrowserRouter([
@@ -26,6 +26,10 @@ const router = createBrowserRouter([
   {
     path: "/profile",
     element: <Profile />,
+  },
+  {
+    path: "/console",
+    element: <Console />,
   },
 ]);
 
