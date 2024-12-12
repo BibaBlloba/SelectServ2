@@ -19,12 +19,15 @@ from models import *
 
 @asyncstartablecontext
 async def lifespan(app: FastAPI):
-    log.info("reload")
-    await create_superuser()
     yield
 
 
 app = FastAPI()
+
+
+# @app.on_event("startup")
+# async def startup():
+#     await create_superuser()
 
 
 app.include_router(APIRouter_v1.router)
