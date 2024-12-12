@@ -11,12 +11,12 @@ function NavBar() {
       <ul className="list-none min-[840px]:flex hidden justify-start items-center flex-1 ml-9">
         {navLinks.map((nav, index) => (
           <li key={nav.id} className={`ml-5`}>
-            <a href={`${nav.id}`}>{nav.title}</a>
+            <a href={`/${nav.id}`}>{nav.title}</a>
           </li>
         ))}
       </ul>
       <div className="flex justify-end items-center flex-1 space-x-5">
-        <a href="/profile">
+        <a href="/profile/nav1">
           <Button variant="outlined" className="sm:flex hidden" danger>
             Логин
           </Button>
