@@ -13,6 +13,16 @@ class Settings(BaseSettings):
     JWT_ACCESS_COOKIE_NAME_P: str
     RESET_PASSWORD_TOKEN_SECRET_P: str
     VERIFICATION_TOKEN_SECRET_P: str
+    SUPERUSER_EMAIL_P: str
+    SUPERUSER_PASSWORD_P: str
+
+    @property
+    def SUPERUSER_EMAIL(self):
+        return self.SUPERUSER_EMAIL_P
+
+    @property
+    def SUPERUSER_PASSWORD(self):
+        return self.SUPERUSER_PASSWORD_P
 
     @property
     def RESET_PASSWORD_TOKEN_SECRET(self):

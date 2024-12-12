@@ -1,4 +1,4 @@
-import logging
+from contextlib import asynccontextmanager
 from typing import Annotated
 
 from authx import AuthX, AuthXConfig
@@ -11,17 +11,9 @@ import APIRouter_v1
 import auth_router
 import users_router
 from database import *
+from logs import log
 from models import *
 
-log = logging.getLogger(__name__)
-log.setLevel(logging.DEBUG)
-handler = logging.FileHandler(filename="logs.log")
-formatter = logging.Formatter(
-    "%(asctime)s : %(levelname)s : %(message)s ", datefmt="%Y/%m/%d %H:%M:%S"
-)
-handler.setLevel(logging.DEBUG)
-handler.setFormatter(formatter)
-log.addHandler(handler)
 app = FastAPI()
 
 
