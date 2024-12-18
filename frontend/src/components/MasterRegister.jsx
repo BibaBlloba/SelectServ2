@@ -1,6 +1,8 @@
 import { Button, Checkbox, Divider, Form, Input } from "antd";
 import { useRef, useState, useEffect } from "react";
 import { FaGoogle, FaSteam, FaYandex } from "react-icons/fa";
+import Register from "./Register";
+import { Outlet } from "react-router-dom";
 
 const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.[0-9])(?=.*[!@#$%^&*]).{8.36}$/;
@@ -25,12 +27,12 @@ const MasterRegister = () => {
   const items = [
     {
       key: "/masterRegister",
-      label: "Основные",
+      // label: "Основные",
       // icon: <IoPerson size={20} />
     },
     {
-      key: "/profile/nav2",
-      label: "Платежная информация",
+      key: "/masterLogin",
+      // label: "Платежная информация",
       // icon: <FaMoneyBill size={20} />
     },
   ]
@@ -50,6 +52,7 @@ const MasterRegister = () => {
           </div>
         </div>
         <div className="bg-white rounded-xl border-[5px] border-solid border-gray-300 p-8 w-[430px] h-[590px]">
+          <Outlet />
         </div>
       </div>
     </div>
