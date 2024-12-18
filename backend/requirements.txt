@@ -9,3 +9,4 @@ passlib
 jwt
 pydantic_settings 
 asyncpg
+fastapi-users[sqlalchemy]
