@@ -1,6 +1,13 @@
 import { Button, Divider, Form, Input } from 'antd'
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import { FaGoogle, FaSteam, FaYandex } from 'react-icons/fa'
+
+const LoginFunc = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  // const [, setToken] = useContext(UserContext)
+
+}
 
 const Login = () => {
   return (
