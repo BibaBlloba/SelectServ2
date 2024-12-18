@@ -1,4 +1,5 @@
 import { Button, Divider, Form, Input } from 'antd'
+import axios from 'axios'
 import React, { useContext, useState } from 'react'
 import { FaGoogle, FaSteam, FaYandex } from 'react-icons/fa'
 
@@ -8,6 +9,18 @@ const LoginFunc = () => {
   // const [, setToken] = useContext(UserContext)
 
 }
+
+const API_URL = "http://localhost:8000";
+
+const $api = axios.create({
+  withCredentials: true,
+  baseURL: API_URL,
+})
+
+$api.interceptors.request.use((config) => {
+  config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`
+  return config
+})
 
 const Login = () => {
   return (
