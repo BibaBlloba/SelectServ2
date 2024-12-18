@@ -1,5 +1,6 @@
 from fastapi import APIRouter
 
+import messages
 from dependencies.auth_back import authentication_backend
 from dependencies.fastapi_users import fastapi_users
 from schemas.user import UserCreate, UserRead
