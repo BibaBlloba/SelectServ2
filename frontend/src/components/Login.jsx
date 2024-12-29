@@ -4,16 +4,12 @@ import React, { useContext, useState } from 'react'
 import { FaGoogle, FaSteam, FaYandex } from 'react-icons/fa'
 import { UserContext, UserProvider } from '../context/UserContext'
 
-const onFinish = (values) => {
+const onFinish = async (values) => {
   console.log('Success: ', values);
 }
 
 const onFailed = (errorInfo) => {
   console.log('Failed: ', errorInfo);
-}
-
-const LoginFunc = () => {
-  const [, setToken] = useContext(UserContext);
 }
 
 const API_URL = "http://localhost:8000";

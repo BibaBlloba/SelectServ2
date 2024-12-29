@@ -1,19 +1,44 @@
 import { Button, Checkbox, Divider, Form, Input } from "antd";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useContext } from "react";
 import { FaGoogle, FaSteam, FaYandex } from "react-icons/fa";
 import React from 'react'
+import { UserContext } from "../context/UserContext";
+
+
+const onFinish = async (values) => {
+  // const [, setToken] = useContext(UserContext);
+  // const [errorMessage, setErrorMessage] = useState("");
+
+  console.log("Success:", values);
+
+  const requestOptions = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      email: values.email,
+      password: values.password,
+    })
+  }
+
+  const response = await fetch("http://127.0.0.1:8000/register", requestOptions)
+  const data = await response.json();
+
+  // if (!response.ok) {
+  //   console.log(data.detail);
+  // }
+  // else {
+  //   console.log(data.access_token)
+  // }
+};
+
+const onFinishFailed = (errorInfo) => {
+  console.log("Failed:", errorInfo);
+};
+
 
 const Register = () => {
-  const [loing, setLogin] = useState('');
-  const [password, setPassword] = useState('');
 
-  const onFinish = (values) => {
-    console.log("Success:", values.email);
-  };
 
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
-  };
   return (
     <Form
       layout="vertical"
@@ -37,7 +62,7 @@ const Register = () => {
       </Form.Item>
       <Form.Item
         label="Пароль"
-        name="passwd"
+        name="password"
         rules={[
           {
             required: true,
