@@ -6,6 +6,21 @@ import { UserContext, UserProvider } from '../context/UserContext'
 
 const onFinish = async (values) => {
   console.log('Success: ', values);
+
+  const requestOptions = {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: JSON.stringify(`grant_type=password&username=${values.email}&password=${values.password}&scope=&client_id=string&client_secret=string`)
+  }
+
+  const response = await fetch("http://127.0.0.1:8000/login", requestOptions)
+  const data = await response.json()
+
+  if (!response.ok) {
+    console.log(data.detail)
+  } else {
+    localStorage.setItem("UserToken", data.access_token)
+  }
 }
 
 const onFailed = (errorInfo) => {
