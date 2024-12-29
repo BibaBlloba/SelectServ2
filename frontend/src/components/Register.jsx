@@ -9,8 +9,6 @@ const Register = () => {
 
   const onFinish = (values) => {
     console.log("Success:", values.email);
-    setLogin(values.email);
-    setPassword(values.password);
   };
 
   const onFinishFailed = (errorInfo) => {

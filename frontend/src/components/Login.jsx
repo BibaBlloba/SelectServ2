@@ -2,12 +2,18 @@ import { Button, Divider, Form, Input } from 'antd'
 import axios from 'axios'
 import React, { useContext, useState } from 'react'
 import { FaGoogle, FaSteam, FaYandex } from 'react-icons/fa'
+import { UserContext, UserProvider } from '../context/UserContext'
+
+const onFinish = (values) => {
+  console.log('Success: ', values);
+}
+
+const onFailed = (errorInfo) => {
+  console.log('Failed: ', errorInfo);
+}
 
 const LoginFunc = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  // const [, setToken] = useContext(UserContext)
-
+  const [, setToken] = useContext(UserContext);
 }
 
 const API_URL = "http://localhost:8000";
@@ -28,6 +34,8 @@ const Login = () => {
       initialValues={{
         remember: true,
       }}
+      onFinish={onFinish}
+      onFinishFailed={onFailed}
     >
       <Form.Item
         label="Электронная почта"
@@ -43,7 +51,7 @@ const Login = () => {
       </Form.Item>
       <Form.Item
         label="Пароль"
-        name="passwd"
+        name="password"
         rules={[
           {
             required: true,
