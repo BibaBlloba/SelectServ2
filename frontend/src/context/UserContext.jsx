@@ -19,7 +19,7 @@ export const UserProvider = (props) => {
       if (!response.ok) {
         setToken(null);
       }
-      localStorage.setItem("UesrToken", token)
+      localStorage.setItem("UserToken", token)
     }
     fetchUser();
 
