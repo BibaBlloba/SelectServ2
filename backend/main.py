@@ -28,6 +28,7 @@ origins = [
     "http://localhost:5173",
     "https://ss.akeka.ru",
     "localhost:5173",
+    # "frontend",
 ]
 
 app = FastAPI()
@@ -53,7 +54,8 @@ async def db(session: AsyncSession = Depends(create_async_session)):
 
 
 @app.post("/tables")
-async def create_tables(user: UserModel = Depends(current_superuser)):
+async def create_tables():
+    # async def create_tables(user: UserModel = Depends(current_superuser)):
     async with async_engine.begin() as conn:
         await conn.run_sync(Base.metadata.drop_all)
         await conn.run_sync(Base.metadata.create_all)

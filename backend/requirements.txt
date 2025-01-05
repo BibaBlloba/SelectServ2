@@ -6,7 +6,8 @@ python-multipart
 SQLalchemy
 uvicorn
 passlib
-jwt
 pydantic_settings 
 asyncpg
 fastapi-users[sqlalchemy]
+authx
+pyjwt[crypto]
