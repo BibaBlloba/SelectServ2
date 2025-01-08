@@ -1,14 +1,23 @@
-import { pricing } from "../constants";
+// import { pricing } from "../constants";
 import { Button } from "antd";
+import axios from 'axios';
+import { useEffect, useState } from "react";
 
 function Price() {
+
+  const [pricing, setPricing] = useState([]);
+
+  useEffect(() => {
+    axios.get("http://127.0.0.1:8000/price").then(data => setPricing(data.data));
+  }, [])
+
   return (
     <div className="flex flex-col justify-center items-center min-h-screen pb-20 bg-white ">
       <div className="flex w-full font-mainFont justify-center sm:text-5xl text-4xl pt-24 sm:pt-24 sm:mb-16 mb-0">
         Выбери свой план
       </div>
       <div className="flex md:flex-row sm:p-0 p-9 flex-col gap-5 2xl:gap-16 shrink-0">
-        {pricing.map((price, index) => (
+        {pricing.map((price) => (
           <div
             key="price.id"
             className={`flex flex-col ${price.color} ${price.bg_color} hover:bg-red-100 transition-colors duration-300 border-2 rounded-lg p-5 pr-0 justify-between`}

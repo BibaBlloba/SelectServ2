@@ -17,7 +17,7 @@ from database import *
 from dependencies.fastapi_users import current_superuser, current_user
 from logs import log
 from models import *
-
+import json
 
 @asyncstartablecontext
 async def lifespan(app: FastAPI):
@@ -34,7 +34,7 @@ origins = [
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["*", "127.0.0.1"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -54,10 +54,16 @@ async def db(session: AsyncSession = Depends(create_async_session)):
 
 
 @app.post("/tables")
-# async def create_tables():
-async def create_tables(user: UserModel = Depends(current_superuser)):
+async def create_tables():
+# async def create_tables(user: UserModel = Depends(current_superuser)):
     async with async_engine.begin() as conn:
         await conn.run_sync(Base.metadata.drop_all)
         await conn.run_sync(Base.metadata.create_all)
         log.warning("Drop Tables")
     return {"ok": True}
+
+@app.get("/price")
+async def get_price():
+    with open('price.json') as f:
+        d = json.load(f)
+        return d

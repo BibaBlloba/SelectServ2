@@ -1,0 +1,50 @@
+[
+  {
+    "id": "standart",
+    "title": "Standart",
+    "price": "2.39",
+    "text": "Стандартный облачный сервер",
+    "color": "border-gray-500",
+    "har1": "1 ядра CPU",
+    "har2": "50 Gb SSD",
+    "har3": "8 Gb RAM",
+    "har4": "Публичный IP",
+    "har5": "Интернет до 100 Мбит/сек"
+  },
+  {
+    "id": "standart",
+    "title": "Standart",
+    "price": "2.39",
+    "text": "Стандартный облачный сервер",
+    "color": "border-gray-500",
+    "har1": "1 ядра CPU",
+    "har2": "50 Gb SSD",
+    "har3": "8 Gb RAM",
+    "har4": "Публичный IP",
+    "har5": "Интернет до 100 Мбит/сек"
+  },
+  {
+    "id": "standart",
+    "title": "Standart",
+    "price": "2.39",
+    "text": "Стандартный облачный сервер",
+    "color": "border-gray-500",
+    "har1": "1 ядра CPU",
+    "har2": "50 Gb SSD",
+    "har3": "8 Gb RAM",
+    "har4": "Публичный IP",
+    "har5": "Интернет до 100 Мбит/сек"
+  },
+  {
+    "id": "standart",
+    "title": "Standart",
+    "price": "2.39",
+    "text": "Стандартный облачный сервер",
+    "color": "border-gray-500",
+    "har1": "1 ядра CPU",
+    "har2": "50 Gb SSD",
+    "har3": "8 Gb RAM",
+    "har4": "Публичный IP",
+    "har5": "Интернет до 100 Мбит/сек"
+  }
+]
