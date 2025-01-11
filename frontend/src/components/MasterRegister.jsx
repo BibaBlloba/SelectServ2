@@ -52,21 +52,22 @@ const MasterRegister = () => {
           </div>
         </div>
         <div className="bg-white rounded-xl border-[5px] border-solid border-gray-300 p-8 w-[430px] h-[610px] flex flex-col gap-4">
-          <Anchor
-            direction="horizontal"
-            items={[
-              {
-                key: 'Register',
-                href: '/MasterRegister',
-                title: 'Регистрация',
-              },
-              {
-                key: 'Login',
-                href: '/MasterLogin',
-                title: 'Логин',
-              },
-            ]}
-          />
+          {/* <Anchor */}
+          {/*   direction="horizontal" */}
+          {/*   items={[ */}
+          {/*     { */}
+          {/*       key: 'Register', */}
+          {/*       href: '/MasterRegister', */}
+          {/*       title: 'Регистрация', */}
+          {/*     }, */}
+          {/*     { */}
+          {/*       key: 'Login', */}
+          {/*       href: '/MasterLogin', */}
+          {/*       title: 'Логин', */}
+          {/*     }, */}
+          {/*   ]} */}
+          {/* /> */}
+
           <Outlet />
         </div>
       </div>
