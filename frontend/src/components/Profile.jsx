@@ -5,6 +5,7 @@ import { IoPerson } from 'react-icons/io5'
 import { TbBellRingingFilled } from 'react-icons/tb'
 import { Outlet, useNavigate } from 'react-router-dom'
 import Footer from './Footer'
+import { Col, Container, Nav, Tab } from 'react-bootstrap'
 
 const items = [
   {
@@ -34,22 +35,32 @@ const Profile = () => {
   const navigate = useNavigate()
 
   return (
-    <div>
-      <div className='pt-20 bg-white flex flex-row min-h-screen'>
-        <div className='p-36 flex flex-row justify-start w-screen'>
-          <Menu
-            className='min-w-[300px] text-xl flex-none'
-            items={items}
-            onClick={({ key }) => {
-              navigate(key)
-            }}
-          ></Menu>
-          <div className='ml-20 text-xl w-full'>
-            <Outlet />
-          </div>
-        </div>
-      </div>
-      <Footer />
+    <div className='flex flex-row min-h-screen bg-white'>
+      <Container className='mt-20'>
+        <Tab.Container id="ledt-tabs" defaultActiveKey="first">
+          <Col sm={3}>
+            <Nav variant='pills' className='flex-col mt-2'>
+              <Nav.Item>
+                <Nav.Link eventKey='first'>First</Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link eventKey='second'>Second</Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link eventKey='first'>First</Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link eventKey='first'>First</Nav.Link>
+              </Nav.Item>
+            </Nav>
+          </Col>
+          <Col sm={9}>
+            <Tab.Pane eventKey='first'>
+              <h1>Test1</h1>
+            </Tab.Pane>
+          </Col>
+        </Tab.Container>
+      </Container>
     </div>
   )
 }
