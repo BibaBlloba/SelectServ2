@@ -1,32 +1,36 @@
 import { Button, Checkbox, Divider, Form, Input } from "antd";
+import { useState } from "react";
 import { FaGoogle, FaSteam, FaYandex } from "react-icons/fa";
 
 
-const onFinish = async (values) => {
-
-  console.log("Success:", values);
-
-  const requestOptions = {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      email: values.email,
-      password: values.password,
-    })
-  }
-
-  const response = await fetch("http://127.0.0.1:8000/register", requestOptions)
-  const data = await response.json();
-
-};
-
-const onFinishFailed = (errorInfo) => {
-  console.log("Failed:", errorInfo);
-};
 
 
 const Register = () => {
 
+  const [status, setStatus] = useState(0)
+
+  const onFinish = async (values) => {
+
+    console.log("Success:", values);
+
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: values.email,
+        password: values.password,
+      })
+    }
+
+    const response = await fetch("http://127.0.0.1:8000/register", requestOptions)
+    const data = await response.json();
+    setStatus(response.status)
+
+  };
+
+  const onFinishFailed = (errorInfo) => {
+    console.log("Failed:", errorInfo);
+  };
 
   return (
     <Form
