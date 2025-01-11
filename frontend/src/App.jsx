@@ -3,6 +3,7 @@ import { NavBar, Master, Price, MasterRegister, Profile, ProfileGeneral, Profile
 import { BrowserRouter, createBrowserRouter, Route, RouterProvider, Routes } from "react-router-dom";
 import Register from "./components/Register";
 import Login from "./components/Login";
+import Page404 from "./components/Page404";
 
 const router = createBrowserRouter([
   {
@@ -55,6 +56,7 @@ function App() {
             {/* <Route path="nav3" element={<ProfileNotifications />} /> */}
             {/* <Route path="nav4" element={<ProfileInfo />} /> */}
           </Route>
+          <Route path="*" element={<Page404 />} />
         </Routes>
       </div>
     </BrowserRouter >
