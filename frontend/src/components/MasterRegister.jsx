@@ -1,42 +1,20 @@
-import { Anchor, Button, Checkbox, Divider, Form, Input } from "antd";
-import { useRef, useState, useEffect } from "react";
-import { FaGoogle, FaSteam, FaYandex } from "react-icons/fa";
+import { Tabs } from "antd";
 import Register from "./Register";
-import { Outlet } from "react-router-dom";
-
-const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
-const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.[0-9])(?=.*[!@#$%^&*]).{8.36}$/;
-
-
-
+import Login from "./Login";
 
 const MasterRegister = () => {
-  const [loing, setLogin] = useState('');
-  const [password, setPassword] = useState('');
-
-  const onFinish = (values) => {
-    console.log("Success:", values.email);
-    setLogin(values.email);
-    setPassword(values.password);
-  };
-
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
-  };
-
   const items = [
     {
-      key: "/masterRegister",
-      // label: "Основные",
-      // icon: <IoPerson size={20} />
+      key: '1',
+      label: 'Регистраиця',
+      children: <Register />,
     },
     {
-      key: "/masterLogin",
-      // label: "Платежная информация",
-      // icon: <FaMoneyBill size={20} />
-    },
-  ]
-
+      key: '2',
+      label: 'Вход',
+      children: <Login />,
+    }
+  ];
 
   return (
     <div className="bg-white p-5 hidden sm:block">
@@ -52,23 +30,7 @@ const MasterRegister = () => {
           </div>
         </div>
         <div className="bg-white rounded-xl border-[5px] border-solid border-gray-300 p-8 w-[430px] h-[610px] flex flex-col gap-4">
-          {/* <Anchor */}
-          {/*   direction="horizontal" */}
-          {/*   items={[ */}
-          {/*     { */}
-          {/*       key: 'Register', */}
-          {/*       href: '/MasterRegister', */}
-          {/*       title: 'Регистрация', */}
-          {/*     }, */}
-          {/*     { */}
-          {/*       key: 'Login', */}
-          {/*       href: '/MasterLogin', */}
-          {/*       title: 'Логин', */}
-          {/*     }, */}
-          {/*   ]} */}
-          {/* /> */}
-
-          <Outlet />
+          <Tabs defaultActiveKey="1" items={items} />
         </div>
       </div>
     </div>

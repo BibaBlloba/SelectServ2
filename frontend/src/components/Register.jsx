@@ -1,13 +1,8 @@
 import { Button, Checkbox, Divider, Form, Input } from "antd";
-import { useRef, useState, useEffect, useContext } from "react";
 import { FaGoogle, FaSteam, FaYandex } from "react-icons/fa";
-import React from 'react'
-import { UserContext } from "../context/UserContext";
 
 
 const onFinish = async (values) => {
-  // const [, setToken] = useContext(UserContext);
-  // const [errorMessage, setErrorMessage] = useState("");
 
   console.log("Success:", values);
 
@@ -23,12 +18,6 @@ const onFinish = async (values) => {
   const response = await fetch("http://127.0.0.1:8000/register", requestOptions)
   const data = await response.json();
 
-  // if (!response.ok) {
-  //   console.log(data.detail);
-  // }
-  // else {
-  //   console.log(data.access_token)
-  // }
 };
 
 const onFinishFailed = (errorInfo) => {

@@ -1,8 +1,6 @@
 import { Button, Divider, Form, Input } from 'antd'
 import axios from 'axios'
-import React, { useContext, useState } from 'react'
 import { FaGoogle, FaSteam, FaYandex } from 'react-icons/fa'
-import { UserContext, UserProvider } from '../context/UserContext'
 
 const onFinish = async (values) => {
   console.log('Success: ', values);
