@@ -17,6 +17,6 @@ COPY --from=build /usr/src/app/nginx /etc/nginx/conf.d
 
 COPY --from=build /usr/src/app/dist /usr/share/nginx/html
 
-EXPOSE 40
+EXPOSE 3000
 
 ENTRYPOINT ["nginx", "-g", "daemon off;"]

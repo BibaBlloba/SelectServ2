@@ -2,8 +2,7 @@ from contextlib import asynccontextmanager
 from typing import Annotated
 
 from authx import AuthX, AuthXConfig
-from fastapi import (APIRouter, Depends, FastAPI, HTTPException, Response,
-                     status)
+from fastapi import APIRouter, Depends, FastAPI, HTTPException, Response, status
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from sqlalchemy.ext.asyncio.base import asyncstartablecontext
@@ -19,17 +18,17 @@ from logs import log
 from models import *
 
 
+async def create_tables_on_startup():
+    async with async_engine.begin() as conn:
+        await conn.run_sync(Base.metadata.drop_all)
+        await conn.run_sync(Base.metadata.create_all)
+        log.warning("Drop Tables")
+
+
 @asyncstartablecontext
 async def lifespan(app: FastAPI):
     yield
 
-
-origins = [
-    "http://localhost:5173",
-    "https://ss.akeka.ru",
-    "localhost:5173",
-    # "frontend",
-]
 
 app = FastAPI()
 app.add_middleware(
@@ -40,10 +39,14 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
 # @app.on_event("startup")
 # async def startup():
 #     await create_superuser()
+
+
+# @app.on_event("startup")
+# async def startup():
+#     await create_tables_on_startup()
 
 
 app.include_router(APIRouter_v1.router)

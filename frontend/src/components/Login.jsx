@@ -11,7 +11,7 @@ const onFinish = async (values) => {
     body: JSON.stringify(`grant_type=password&username=${values.email}&password=${values.password}&scope=&client_id=string&client_secret=string`)
   }
 
-  const response = await fetch("http://127.0.0.1:8000/login", requestOptions)
+  const response = await fetch("/api/login", requestOptions)
   const data = await response.json()
 
   if (!response.ok) {
