@@ -2,7 +2,8 @@ from contextlib import asynccontextmanager
 from typing import Annotated
 
 from authx import AuthX, AuthXConfig
-from fastapi import APIRouter, Depends, FastAPI, HTTPException, Response, status
+from fastapi import (APIRouter, Depends, FastAPI, HTTPException, Response,
+                     status)
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from sqlalchemy.ext.asyncio.base import asyncstartablecontext
