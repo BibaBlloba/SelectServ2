@@ -1,9 +1,9 @@
-// import { useState } from "react";
 import { NavBar, Master, Price, MasterRegister, Profile, ProfileGeneral, ProfileNotifications, ProfileMoney, ProfileInfo, Console } from "./components";
 import { BrowserRouter, createBrowserRouter, Route, RouterProvider, Routes } from "react-router-dom";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import Page404 from "./components/Page404";
+import Test from "./components/Test";
 
 const router = createBrowserRouter([
   {
@@ -50,6 +50,7 @@ function App() {
           <Route path="home" element={<Master />} />
           <Route path="price" element={<Price />} />
           <Route path="auth" element={<MasterRegister />} />
+          <Route path="tst" element={<Test />} />
           <Route path="profile" element={<Profile />}>
             {/* <Route path="nav1" element={<ProfileGeneral />} /> */}
             {/* <Route path="nav2" element={<ProfileMoney />} /> */}

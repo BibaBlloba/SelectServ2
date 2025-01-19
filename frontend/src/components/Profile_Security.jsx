@@ -4,6 +4,7 @@ import { FaLock } from "react-icons/fa"
 import { IoMdMailUnread } from "react-icons/io"
 import { IoShieldHalfSharp, IoShieldOutline } from "react-icons/io5"
 import { MdLocalPhone } from "react-icons/md"
+import Button_dark from "./Button_dark"
 
 const Profile_Security = () => {
   return (
@@ -21,7 +22,7 @@ const Profile_Security = () => {
               <p className="text-red-700">Телефон не добавлен</p>
             </div>
           </div>
-          <Button className="flex" danger>Добавить</Button>
+          <Button_dark text="Добавить" />
         </div>
 
         <div className="flex flex-row items-center justify-between">
@@ -32,7 +33,7 @@ const Profile_Security = () => {
               <p className="text-red-700">Почта не добавлена</p>
             </div>
           </div>
-          <Button className="flex" danger>Изменить</Button>
+          <Button_dark text="Изменить" />
         </div>
 
       </div>
@@ -48,7 +49,7 @@ const Profile_Security = () => {
               <p className="text-red-700">Телефон не добавлен</p>
             </div>
           </div>
-          <Button className="flex" danger>Изменить</Button>
+          <Button_dark text="Изменить" />
         </div>
 
         <div className="flex flex-row items-center justify-between">
@@ -59,7 +60,7 @@ const Profile_Security = () => {
               <p className="text-red-700">Не подключена</p>
             </div>
           </div>
-          <Button className="flex" danger>Включить</Button>
+          <Button_dark text="Включить" />
         </div>
 
       </div>
