@@ -14,12 +14,12 @@ function NavBar() {
         ))}
       </ul>
       <div className="flex justify-end items-center flex-1 space-x-5">
-        <a href="/profile/nav1">
+        <a href="/profile">
           <Button variant="outlined" className="sm:flex hidden" danger>
             Логин
           </Button>
         </a>
-        <a href="/auth">
+        <a href="/profile">
           <Button
             variant="contained"
             className="sm:flex hidden"
