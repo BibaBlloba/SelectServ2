@@ -28,3 +28,13 @@ class UserModel(Base, SQLAlchemyBaseUserTable[int]):
     @classmethod
     def get_db(cls, session: "AsyncSession"):
         return SQLAlchemyUserDatabase(session, UserModel)
+
+
+class RoleModel(Base):
+    __tablename__ = "role"
+
+    id: Mapped[str] = mapped_column(primary_key=True)
+
+    @classmethod
+    def get_db(cls, session: "AsyncSession"):
+        return SQLAlchemyUserDatabase(session, UserModel)

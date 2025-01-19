@@ -1,6 +1,9 @@
+import sys
 from contextlib import asynccontextmanager
+from pathlib import Path
 from typing import Annotated
 
+import uvicorn
 from authx import AuthX, AuthXConfig
 from fastapi import (APIRouter, Depends, FastAPI, HTTPException, Response,
                      status)
@@ -17,6 +20,8 @@ from database import *
 from dependencies.fastapi_users import current_superuser, current_user
 from logs import log
 from models import *
+
+sys.path.append(str(Path(__file__).parent.parent))
 
 
 async def create_tables_on_startup():
@@ -65,3 +70,7 @@ async def create_tables():
         await conn.run_sync(Base.metadata.create_all)
         log.warning("Drop Tables")
     return {"ok": True}
+
+
+if __name__ == "__main__":
+    uvicorn.run("main:app", host="0.0.0.0", port=8000)
