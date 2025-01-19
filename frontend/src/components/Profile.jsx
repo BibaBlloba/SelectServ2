@@ -4,7 +4,6 @@ const Profile = () => {
 
   return (
     <div className='bg-white h-screen'>
-
     </div>
   )
 }
