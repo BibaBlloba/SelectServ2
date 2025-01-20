@@ -26,6 +26,8 @@ const Login = () => {
     } else {
       localStorage.setItem("UserToken", data.access_token)
     }
+
+    setTimeout(() => { window.location.reload(); }, 1000);
   }
 
   const onFailed = (errorInfo) => {
