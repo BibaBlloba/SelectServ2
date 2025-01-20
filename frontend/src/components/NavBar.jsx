@@ -9,7 +9,8 @@ function NavBar() {
   const [token, setToken] = useContext(UserContext)
 
   const handleLogout = () => {
-    setToken(null)
+    setToken(null);
+    setTimeout(() => { window.location.reload(); }, 1000);
   }
 
   return (
@@ -23,11 +24,13 @@ function NavBar() {
         ))}
       </ul>
       <div className="flex justify-end items-center flex-1 space-x-5">
-        <a href="/profile">
-          <Button variant="outlined" className="sm:flex hidden" danger>
-            Логин
-          </Button>
-        </a>
+        {!token && (
+          <a href="/profile">
+            <Button variant="outlined" className="sm:flex hidden" danger>
+              Логин
+            </Button>
+          </a>
+        )}
         <a href="/profile">
           <Button
             variant="contained"
