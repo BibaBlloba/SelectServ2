@@ -4,6 +4,7 @@ import Register from "./components/Register";
 import Login from "./components/Login";
 import Page404 from "./components/Page404";
 import Test from "./components/Test";
+import Table from "./components/Table";
 
 const router = createBrowserRouter([
   {
@@ -51,6 +52,7 @@ function App() {
           <Route path="price" element={<Price />} />
           <Route path="auth" element={<MasterRegister />} />
           <Route path="tst" element={<Test />} />
+          <Route path="table" element={<Table />} />
           <Route path="profile" element={<Profile />}>
             {/* <Route path="nav1" element={<ProfileGeneral />} /> */}
             {/* <Route path="nav2" element={<ProfileMoney />} /> */}
