@@ -22,7 +22,7 @@ const Register = () => {
       })
     }
 
-    const response = await fetch("/api/register", requestOptions)
+    const response = await fetch("http://localhost:8000/register", requestOptions)
     const data = await response.json();
     setStatus(response.status)
 
