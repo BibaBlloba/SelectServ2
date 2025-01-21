@@ -7,6 +7,7 @@ const Register = () => {
 
   const [status, setStatus] = useState(0)
   const [errorMessage, setErrorMessage] = useState("")
+  const [successMessage, setSuccessMessage] = useState("")
 
   const onFinish = async (values) => {
 
@@ -25,6 +26,10 @@ const Register = () => {
     const data = await response.json();
     if (data.detail == "REGISTER_USER_ALREADY_EXISTS") {
       setErrorMessage("Данный пользователь уже зарегистрирован")
+      setSuccessMessage("")
+    } else {
+      setErrorMessage("")
+      setSuccessMessage("Пользователь зарегестрирован")
     }
     setStatus(response.status)
 
@@ -80,6 +85,7 @@ const Register = () => {
         <Input />
       </Form.Item>
       <ErrorMessage message={errorMessage} />
+      <ErrorMessage message={successMessage} success />
       <Form.Item name="newsCheck" valuePropName="newsCheck" label={null}>
         <Checkbox>Я хочу получать новостную рассылку</Checkbox>
       </Form.Item>
