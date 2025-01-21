@@ -1,4 +1,4 @@
-import { Button } from "antd"
+import { Button, Modal } from "antd"
 import { CiLock } from "react-icons/ci"
 import { FaLock } from "react-icons/fa"
 import { IoMdMailUnread } from "react-icons/io"
@@ -12,26 +12,48 @@ const Profile_Security = () => {
   const [token] = useState(localStorage.getItem("UserToken"))
   const [data, setData] = useState(null)
   const [phone, setPhone] = useState(null)
+  const [phoneModal, setPhoneModal] = useState(false)
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      const requestOptions = {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + token,
-        }
-      }
-      const response = await fetch("http://localhost:8000/users/me", requestOptions)
-      const data = await response.json()
-      setData(data)
-      if (data.phone_number) {
-        setPhone(data.phone_number)
+  const showPhoneModel = () => {
+    setPhoneModal(true)
+  }
+
+  const handleCancel = () => {
+    setPhoneModal(false)
+  }
+
+  const fetchUser = async () => {
+    const requestOptions = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
       }
     }
+    const response = await fetch("http://localhost:8000/users/me", requestOptions)
+    const data = await response.json()
+    setData(data)
+    if (data.phone_number) {
+      setPhone(data.phone_number)
+    }
+  }
 
+  const fetchPhone = async () => {
+    const requestOptions = {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+      body: JSON.stringify({ phone_number: phone })
+    }
+    const response = await fetch("http://localhost:8000/users/me", requestOptions)
+    const data = await response.json()
+  }
+
+  useEffect(() => {
     fetchUser();
-  })
+  }, [])
 
   return (
     <div className='flex flex-col gap-6'>
@@ -46,11 +68,11 @@ const Profile_Security = () => {
             <div className="flex flex-col">
               <p>Телефон</p>
               {phone ? (
-                <p className="text-red-700">{data.phone_number}</p>
+                <p>{data.phone_number}</p>
               ) : <p className="text-red-700">Телефон не добавлен</p>}
             </div>
           </div>
-          <Button_dark text="Добавить" />
+          <Button_dark text="Добавить" onClick={showPhoneModel} />
         </div>
 
         <div className="flex flex-row items-center justify-between">
@@ -63,7 +85,6 @@ const Profile_Security = () => {
           </div>
           <Button_dark text="Изменить" />
         </div>
-
       </div>
 
       <div className='flex flex-col text-[#C1C6C9] gap-8'>
@@ -92,6 +113,11 @@ const Profile_Security = () => {
         </div>
 
       </div>
+
+      <Modal open={phoneModal} onCancel={handleCancel} onOk={fetchPhone}>
+        <p className="my-2">Введите новый номер телефона:</p>
+        <input type="text" className="bg-gray-300 rounded-md h-10 w-60 p-3" placeholder="+7 900 000 0000" onChange={(e) => setPhone(e.target.value)}></input>
+      </Modal>
 
     </div>
   )
