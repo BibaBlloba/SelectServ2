@@ -1,18 +1,21 @@
 import { navLinks } from "../constants";
 import { Button } from "antd";
 import MobileDrawer from "./MobileDrawer";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { UserContext } from "../context/UserContext";
 import { redirect } from "react-router-dom";
 
 function NavBar() {
 
   const [token, setToken] = useContext(UserContext)
-  const mail = localStorage.getItem("UserEmail")
+  const [mail, setMail] = useState(localStorage.getItem("UserEmail"))
 
   const handleLogout = () => {
     setToken(null);
-    setTimeout(() => { window.location.reload(); }, 1000);
+    setMail(null);
+    localStorage.setItem("UserToken", token);
+    localStorage.setItem("UserEmail", mail);
+    setTimeout(() => { window.location.href = '/home'; }, 1000);
   }
 
   return (

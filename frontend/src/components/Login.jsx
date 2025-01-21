@@ -14,7 +14,7 @@ const Login = () => {
   const URL_ME = "http://localhost:8000/users/me"
 
   const Redir = () => {
-    window.location.href = '/price';
+    window.location.href = '/profile';
   }
 
   const onFinish = async (values) => {
