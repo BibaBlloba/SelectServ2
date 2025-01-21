@@ -1,13 +1,12 @@
 import { Button, Checkbox, Divider, Form, Input } from "antd";
 import { useState } from "react";
 import { FaGoogle, FaSteam, FaYandex } from "react-icons/fa";
-
-
-
+import ErrorMessage from './ErrorMessage';
 
 const Register = () => {
 
   const [status, setStatus] = useState(0)
+  const [errorMessage, setErrorMessage] = useState("")
 
   const onFinish = async (values) => {
 
@@ -24,6 +23,9 @@ const Register = () => {
 
     const response = await fetch("http://localhost:8000/register", requestOptions)
     const data = await response.json();
+    if (data.detail == "REGISTER_USER_ALREADY_EXISTS") {
+      setErrorMessage("Данный пользователь уже зарегистрирован")
+    }
     setStatus(response.status)
 
   };
@@ -77,7 +79,7 @@ const Register = () => {
       >
         <Input />
       </Form.Item>
-
+      <ErrorMessage message={errorMessage} />
       <Form.Item name="newsCheck" valuePropName="newsCheck" label={null}>
         <Checkbox>Я хочу получать новостную рассылку</Checkbox>
       </Form.Item>
