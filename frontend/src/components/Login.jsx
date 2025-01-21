@@ -45,7 +45,8 @@ const Login = () => {
     const userData = await userResponse.json()
     if (userResponse.ok) {
       localStorage.setItem("UserEmail", userData.email)
-      setTimeout(() => { window.location.reload(); Redir(); }, 1000);
+      window.location.reload()
+      Redir()
     }
 
   }

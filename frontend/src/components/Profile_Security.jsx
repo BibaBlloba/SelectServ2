@@ -51,6 +51,7 @@ const Profile_Security = () => {
     }
     const response = await fetch("http://localhost:8000/users/me", requestOptions)
     const data = await response.json()
+    window.location.reload()
   }
 
   useEffect(() => {
