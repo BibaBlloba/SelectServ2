@@ -10,6 +10,12 @@ import ErrorMessage from './ErrorMessage';
 const Login = () => {
 
   const [errorMessage, setErrorMessage] = useState("")
+  const URL_LOGIN = "http://localhost:8000/login"
+  const URL_ME = "http://localhost:8000/users/me"
+
+  const Redir = () => {
+    window.location.href = '/price';
+  }
 
   const onFinish = async (values) => {
     const requestOptions = {
@@ -18,14 +24,28 @@ const Login = () => {
       body: JSON.stringify(`grant_type=password&username=${values.email}&password=${values.password}&scope=&client_id=string&client_secret=string`)
     }
 
-    const response = await fetch("http://localhost:8000/login", requestOptions)
+    const response = await fetch(URL_LOGIN, requestOptions)
     const data = await response.json()
+
+    const requestOptionsForUser = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + data.access_token,
+      }
+    }
 
     if (!response.ok) {
       setErrorMessage("Неверный логин или пароль")
     } else {
       localStorage.setItem("UserToken", data.access_token)
-      setTimeout(() => { window.location.reload(); }, 1000);
+    }
+
+    const userResponse = await fetch(URL_ME, requestOptionsForUser)
+    const userData = await userResponse.json()
+    if (userResponse.ok) {
+      localStorage.setItem("UserEmail", userData.email)
+      setTimeout(() => { window.location.reload(); Redir(); }, 1000);
     }
 
   }

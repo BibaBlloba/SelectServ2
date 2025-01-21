@@ -3,10 +3,12 @@ import { Button } from "antd";
 import MobileDrawer from "./MobileDrawer";
 import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
+import { redirect } from "react-router-dom";
 
 function NavBar() {
 
   const [token, setToken] = useContext(UserContext)
+  const mail = localStorage.getItem("UserEmail")
 
   const handleLogout = () => {
     setToken(null);
@@ -24,6 +26,9 @@ function NavBar() {
         ))}
       </ul>
       <div className="flex justify-end items-center flex-1 space-x-5">
+        {token && (
+          <a>{mail}</a>
+        )}
         {!token && (
           <a href="/profile">
             <Button variant="outlined" className="sm:flex hidden" danger>
