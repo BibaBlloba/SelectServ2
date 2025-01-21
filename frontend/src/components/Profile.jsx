@@ -9,12 +9,12 @@ const Profile = () => {
     {
       key: '1',
       label: <p className='text-white'>Профиль</p>,
-      children: <Profile_Main />,
+      children: <Profile_Security />,
     },
     {
       key: '2',
       label: <p className='text-white'>Платежная информация</p>,
-      children: <Profile_Security />,
+      children: <Profile_Main />,
     },
     {
       key: '3',
@@ -39,9 +39,9 @@ const Profile = () => {
   ];
 
   return (
-    <div className='bg-[#181D20] h-screen'>
+    <div className='bg-[#181D20] h-screen font-mainFont'>
       <div className='p-[100px]'>
-        <Tabs defaultActiveKey='1' items={items} tabPosition='left' className='text-white' />
+        <Tabs defaultActiveKey='1' items={items} tabPosition='left' className='text-white font-mainFont' />
       </div>
     </div>
   )

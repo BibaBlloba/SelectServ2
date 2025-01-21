@@ -13,6 +13,8 @@ const Profile_Security = () => {
   const [data, setData] = useState(null)
   const [phone, setPhone] = useState(null)
   const [phoneModal, setPhoneModal] = useState(false)
+  const [email] = useState(localStorage.getItem("UserEmail"))
+  // const [phoneModal, setPhoneModal] = useState(false)
 
   const showPhoneModel = () => {
     setPhoneModal(true)
@@ -58,7 +60,7 @@ const Profile_Security = () => {
   return (
     <div className='flex flex-col gap-6'>
 
-      <h1 className='text-3xl'>Безопасность</h1>
+      <h1 className='text-3xl'>Профиль</h1>
       <div className='flex flex-col text-[#C1C6C9] gap-8'>
         <h2 className='text-xl'>Данные аккаунта</h2>
 
@@ -80,7 +82,7 @@ const Profile_Security = () => {
             <IoMdMailUnread size={30} />
             <div className="flex flex-col">
               <p>Электронная почта</p>
-              <p className="text-red-700">Почта не добавлена</p>
+              <p>{email}</p>
             </div>
           </div>
           <Button_dark text="Изменить" />
@@ -95,7 +97,7 @@ const Profile_Security = () => {
             <CiLock size={30} />
             <div className="flex flex-col">
               <p>Пароль</p>
-              <p className="text-red-700">Телефон не добавлен</p>
+              <p>Изменить пароль</p>
             </div>
           </div>
           <Button_dark text="Изменить" />
