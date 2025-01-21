@@ -39,9 +39,9 @@ const Profile = () => {
   ];
 
   return (
-    <div className='bg-[#181D20] h-screen font-mainFont'>
+    <div className='bg-[#181D20] h-screen'>
       <div className='p-[100px]'>
-        <Tabs defaultActiveKey='1' items={items} tabPosition='left' className='text-white font-mainFont' />
+        <Tabs defaultActiveKey='1' items={items} tabPosition='left' className='text-white' />
       </div>
     </div>
   )
