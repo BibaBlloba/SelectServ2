@@ -22,12 +22,12 @@ const Login = () => {
     const data = await response.json()
 
     if (!response.ok) {
-      setErrorMessage(data.detail)
+      setErrorMessage("Неверный логин или пароль")
     } else {
       localStorage.setItem("UserToken", data.access_token)
+      setTimeout(() => { window.location.reload(); }, 1000);
     }
 
-    setTimeout(() => { window.location.reload(); }, 1000);
   }
 
   const onFailed = (errorInfo) => {
