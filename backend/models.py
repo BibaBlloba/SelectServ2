@@ -1,7 +1,7 @@
 from fastapi_users.db import SQLAlchemyBaseUserTable, SQLAlchemyUserDatabase
 from fastapi_users_db_sqlalchemy.access_token import (
     SQLAlchemyAccessTokenDatabase, SQLAlchemyBaseAccessTokenTable)
-from sqlalchemy import Column, ForeignKey, Integer, String
+from sqlalchemy import ForeignKey, Integer
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
@@ -24,6 +24,7 @@ class UserModel(Base, SQLAlchemyBaseUserTable[int]):
     __tablename__ = "users"
 
     id: Mapped[int] = mapped_column(primary_key=True)
+    phone_number: Mapped[str | None] = mapped_column()
 
     @classmethod
     def get_db(cls, session: "AsyncSession"):

@@ -1,13 +1,14 @@
 from fastapi_users import schemas
+from pydantic import Field
 
 
 class UserRead(schemas.BaseUser[int]):
-    pass
+    phone_number: str | None = Field(None)
 
 
 class UserCreate(schemas.BaseUserCreate):
-    pass
+    phone_number: str | None = Field(None)
 
 
 class UserUpdate(schemas.BaseUserUpdate):
-    pass
+    phone_number: str | None = Field(None)
