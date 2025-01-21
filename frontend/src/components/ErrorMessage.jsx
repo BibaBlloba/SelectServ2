@@ -1,8 +1,8 @@
 import React from "react";
 
-const ErrorMessage = ({ message }) => {
+const ErrorMessage = ({ message, success }) => {
   return (
-    <p className="text-red-800 font-bold">{message}</p>
+    <p className={`${!success ? ("text-red-800") : "text-green-900"} font-bold`}>{message}</p>
   )
 }
 
