@@ -10,7 +10,8 @@ export default {
         sm: "480px",
       },
       fontFamily: {
-        mainFont: ['"Nunito"', "sans-serif"],
+        mainFont: ['"Montserrat"', "sans-serif"],
+        h1Font: ['"Rubik"', "sans-serif"],
       },
     },
     plugins: [],
