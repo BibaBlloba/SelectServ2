@@ -1,14 +1,16 @@
+import { Modal } from "antd"
 import { navLinks } from "../constants";
 import { Button } from "antd";
 import MobileDrawer from "./MobileDrawer";
 import { useContext, useState } from "react";
 import { UserContext } from "../context/UserContext";
-import { redirect } from "react-router-dom";
+import LoginContainer from "./LoginContainer";
 
 function NavBar() {
 
   const [token, setToken] = useContext(UserContext)
   const [mail, setMail] = useState(localStorage.getItem("UserEmail"))
+  const [loginModal, setLoginModal] = useState(false)
 
   const handleLogout = () => {
     setToken(null);
@@ -16,6 +18,14 @@ function NavBar() {
     localStorage.setItem("UserToken", token);
     localStorage.setItem("UserEmail", mail);
     setTimeout(() => { window.location.href = '/home'; }, 1000);
+  }
+
+  const handleLogin = () => {
+    setLoginModal(true)
+  }
+
+  const handleCancel = () => {
+    setLoginModal(false)
   }
 
   return (
@@ -33,11 +43,9 @@ function NavBar() {
           <a>{mail}</a>
         )}
         {!token && (
-          <a href="/profile">
-            <Button variant="outlined" className="sm:flex hidden" danger>
-              Логин
-            </Button>
-          </a>
+          <Button variant="outlined" className="sm:flex hidden" danger onClick={handleLogin}>
+            Логин
+          </Button>
         )}
         <a href="/profile">
           <Button
@@ -61,6 +69,11 @@ function NavBar() {
           </Button>
         )}
       </div>
+
+      <Modal open={loginModal} onCancel={handleCancel}>
+        <LoginContainer />
+      </Modal>
+
     </nav>
   );
 }
