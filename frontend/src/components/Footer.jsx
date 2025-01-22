@@ -20,7 +20,13 @@ const Footer = () => {
         </div>
         <div className="flex flex-col gap-1">
           <h1 className="mb-2 text-gray-400">Документация</h1>
-          <a className="">Руководство Пользователя</a>
+          <a
+            href="https://1drv.ms/w/c/5a0b098562127782/EQ7iHa8C2atMuuidcPfnmEcB1q2vRcIBt6Bw4z4bbb3Zcg?e=OQL8sI"
+            target="_blank"
+            className=""
+          >
+            Руководство Пользователя
+          </a>
           <a className="">API</a>
         </div>
         <div>
