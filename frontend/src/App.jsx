@@ -1,9 +1,27 @@
-import { NavBar, Master, Price, MasterRegister, Profile, ProfileGeneral, ProfileNotifications, ProfileMoney, ProfileInfo, Console } from "./components";
-import { BrowserRouter, createBrowserRouter, Route, RouterProvider, Routes } from "react-router-dom";
+import {
+  NavBar,
+  Master,
+  Price,
+  MasterRegister,
+  Profile,
+  ProfileGeneral,
+  ProfileNotifications,
+  ProfileMoney,
+  ProfileInfo,
+  Console,
+} from "./components";
+import {
+  BrowserRouter,
+  createBrowserRouter,
+  Route,
+  RouterProvider,
+  Routes,
+} from "react-router-dom";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import Page404 from "./components/Page404";
 import Test from "./components/Test";
+import { useState } from "react";
 
 const router = createBrowserRouter([
   {
@@ -37,9 +55,14 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
+  const [secret, setSecret] = useState(localStorage.getItem("SecretToggle"));
+
   return (
     <BrowserRouter>
-      <div className="bg-gradient-to-r to-black from-[#701E1E]">
+      {/* <div className=""> */}
+      <div
+        className={`${secret == "true" ? "bg-[url(./assets/giga.jpg)] bg-contain" : "bg-gradient-to-r to-black from-[#701E1E]"}`}
+      >
         <NavBar />
         <Routes>
           <Route path="/" element={<Master />}>
@@ -60,7 +83,7 @@ function App() {
           <Route path="*" element={<Page404 />} />
         </Routes>
       </div>
-    </BrowserRouter >
+    </BrowserRouter>
   );
 }
 

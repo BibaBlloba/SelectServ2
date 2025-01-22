@@ -1,4 +1,4 @@
-import { Modal } from "antd"
+import { Modal } from "antd";
 import { navLinks } from "../constants";
 import { Button } from "antd";
 import MobileDrawer from "./MobileDrawer";
@@ -7,30 +7,37 @@ import { UserContext } from "../context/UserContext";
 import LoginContainer from "./LoginContainer";
 
 function NavBar() {
-
-  const [token, setToken] = useContext(UserContext)
-  const [mail, setMail] = useState(localStorage.getItem("UserEmail"))
-  const [loginModal, setLoginModal] = useState(false)
+  const [token, setToken] = useContext(UserContext);
+  const [mail, setMail] = useState(localStorage.getItem("UserEmail"));
+  const [loginModal, setLoginModal] = useState(false);
+  const [secret, setSecret] = useState(localStorage.getItem("SecretToggle"));
 
   const handleLogout = () => {
     setToken(null);
     setMail(null);
     localStorage.setItem("UserToken", token);
     localStorage.setItem("UserEmail", mail);
-    window.location.href = '/home';
-  }
+    window.location.href = "/home";
+  };
+
+  const toggleSecret = () => {
+    setSecret(!secret);
+    localStorage.setItem("SecretToggle", secret);
+  };
 
   const handleLogin = () => {
-    setLoginModal(true)
-  }
+    setLoginModal(true);
+  };
 
   const handleCancel = () => {
-    setLoginModal(false)
-  }
+    setLoginModal(false);
+  };
 
   return (
     <nav className="z-20 w-full flex py-4 justify-between items-center sm:px-10  px-6 sticky top-0 text-white bg-gradient-to-r to-black from-[#701E1E] font-mainFont">
-      <a href="/"><h1 className="text-xl sm:text-2xl  font-medium">Select Serv</h1></a>
+      <a href="/">
+        <h1 className="text-xl sm:text-2xl  font-medium">Select Serv</h1>
+      </a>
       <ul className="list-none min-[840px]:flex hidden justify-start items-center flex-1 ml-9">
         {navLinks.map((nav) => (
           <li key={nav.id} className={`ml-5`}>
@@ -39,11 +46,22 @@ function NavBar() {
         ))}
       </ul>
       <div className="flex justify-end items-center flex-1 space-x-5">
-        {token && (
-          <a>{mail}</a>
-        )}
+        {token && <a>{mail}</a>}
+        <Button
+          variant="outlined"
+          className="sm:flex hidden"
+          danger
+          onClick={toggleSecret}
+        >
+          Гигачад
+        </Button>
         {!token && (
-          <Button variant="outlined" className="sm:flex hidden" danger onClick={handleLogin}>
+          <Button
+            variant="outlined"
+            className="sm:flex hidden"
+            danger
+            onClick={handleLogin}
+          >
             Логин
           </Button>
         )}
@@ -73,7 +91,6 @@ function NavBar() {
       <Modal open={loginModal} onCancel={handleCancel}>
         <LoginContainer />
       </Modal>
-
     </nav>
   );
 }
