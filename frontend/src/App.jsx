@@ -71,7 +71,7 @@ function App() {
           <Route path="price" element={<Price />} />
           <Route path="auth" element={<MasterRegister />} />
           <Route path="tst" element={<Test />} />
-          <Route path="console" element={<UnderConstruction />} />
+          <Route path="console" element={<UnderConstruction Chad={secret} />} />
           <Route path="profile" element={<Profile />}>
             {/* <Route path="nav1" element={<ProfileGeneral />} /> */}
             {/* <Route path="nav2" element={<ProfileMoney />} /> */}
