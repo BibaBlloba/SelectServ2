@@ -31,7 +31,6 @@ function Master() {
       </div>
       <Price />
       <Info />
-      <Footer />
       {/* <MobileFooter /> */}
     </div>
   );

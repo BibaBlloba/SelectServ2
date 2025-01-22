@@ -5,6 +5,7 @@ import {
   MasterRegister,
   Profile,
   Console,
+  Footer,
 } from "./components";
 import {
   BrowserRouter,
@@ -80,6 +81,7 @@ function App() {
           <Route path="*" element={<Page404 />} />
         </Routes>
       </div>
+      <Footer />
     </BrowserRouter>
   );
 }
