@@ -17,6 +17,7 @@ import Login from "./components/Login";
 import Page404 from "./components/Page404";
 import Test from "./components/Test";
 import { useState } from "react";
+import UnderConstruction from "./components/UnderConstruction";
 
 const router = createBrowserRouter([
   {
@@ -69,6 +70,7 @@ function App() {
           <Route path="price" element={<Price />} />
           <Route path="auth" element={<MasterRegister />} />
           <Route path="tst" element={<Test />} />
+          <Route path="console" element={<UnderConstruction />} />
           <Route path="profile" element={<Profile />}>
             {/* <Route path="nav1" element={<ProfileGeneral />} /> */}
             {/* <Route path="nav2" element={<ProfileMoney />} /> */}
