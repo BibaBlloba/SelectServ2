@@ -4,17 +4,12 @@ import {
   Price,
   MasterRegister,
   Profile,
-  ProfileGeneral,
-  ProfileNotifications,
-  ProfileMoney,
-  ProfileInfo,
   Console,
 } from "./components";
 import {
   BrowserRouter,
   createBrowserRouter,
   Route,
-  RouterProvider,
   Routes,
 } from "react-router-dom";
 import Register from "./components/Register";
@@ -55,15 +50,15 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  const [secret, setSecret] = useState(localStorage.getItem("SecretToggle"));
+  const [secret, setSecret] = useState(false);
 
   return (
     <BrowserRouter>
       {/* <div className=""> */}
       <div
-        className={`${secret == "true" ? "bg-[url(./assets/giga.jpg)] bg-contain" : "bg-gradient-to-r to-black from-[#701E1E]"}`}
+        className={`${secret ? "bg-[url(./assets/giga.jpg)] bg-contain" : "bg-gradient-to-r to-black from-[#701E1E]"}`}
       >
-        <NavBar />
+        <NavBar stateChanger={() => { setSecret(!secret) }} />
         <Routes>
           <Route path="/" element={<Master />}>
             <Route path="/" element={<Register />} />

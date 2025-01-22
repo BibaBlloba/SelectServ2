@@ -6,11 +6,10 @@ import { useContext, useState } from "react";
 import { UserContext } from "../context/UserContext";
 import LoginContainer from "./LoginContainer";
 
-function NavBar() {
+function NavBar({ stateChanger }) {
   const [token, setToken] = useContext(UserContext);
   const [mail, setMail] = useState(localStorage.getItem("UserEmail"));
   const [loginModal, setLoginModal] = useState(false);
-  const [secret, setSecret] = useState(localStorage.getItem("SecretToggle"));
 
   const handleLogout = () => {
     setToken(null);
@@ -18,11 +17,6 @@ function NavBar() {
     localStorage.setItem("UserToken", token);
     localStorage.setItem("UserEmail", mail);
     window.location.href = "/home";
-  };
-
-  const toggleSecret = () => {
-    setSecret(!secret);
-    localStorage.setItem("SecretToggle", secret);
   };
 
   const handleLogin = () => {
@@ -51,7 +45,7 @@ function NavBar() {
           variant="outlined"
           className="sm:flex hidden"
           danger
-          onClick={toggleSecret}
+          onClick={() => stateChanger('state')}
         >
           Гигачад
         </Button>
