@@ -5,11 +5,13 @@ import MobileDrawer from "./MobileDrawer";
 import { useContext, useState } from "react";
 import { UserContext } from "../context/UserContext";
 import LoginContainer from "./LoginContainer";
+import { Tooltip } from 'antd';
 
 function NavBar({ stateChanger }) {
   const [token, setToken] = useContext(UserContext);
   const [mail, setMail] = useState(localStorage.getItem("UserEmail"));
   const [loginModal, setLoginModal] = useState(false);
+
 
   const handleLogout = () => {
     setToken(null);
@@ -29,6 +31,7 @@ function NavBar({ stateChanger }) {
 
   return (
     <nav className="z-20 w-full flex py-4 justify-between items-center sm:px-10  px-6 sticky top-0 text-white bg-gradient-to-r to-black from-[#701E1E] font-mainFont">
+      <span className="absolute top-[-100000px]" id="Chad"></span>
       <a href="/">
         <h1 className="text-xl sm:text-2xl  font-medium">Select Serv</h1>
       </a>
@@ -41,14 +44,18 @@ function NavBar({ stateChanger }) {
       </ul>
       <div className="flex justify-end items-center flex-1 space-x-5">
         {token && <a>{mail}</a>}
-        <Button
-          variant="outlined"
-          className="sm:flex hidden"
-          danger
-          onClick={() => stateChanger('state')}
-        >
-          Гигачад
-        </Button>
+        <Tooltip title={window.location.href == "http://localhost:5173/" ? '' : 'Работает только на главном экране'}>
+          <a href="#Chad">
+            <Button
+              variant="outlined"
+              className="sm:flex hidden"
+              danger
+              onClick={() => stateChanger('state')}
+            >
+              Гигачад
+            </Button>
+          </a>
+        </Tooltip>
         {!token && (
           <Button
             variant="outlined"
