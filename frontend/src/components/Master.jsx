@@ -2,6 +2,7 @@
 import { Button } from "antd";
 import image1 from "../assets/image1.png";
 import { Info, Footer, MobileFooter, Price } from "./index";
+import Sponsor from "./Sponsor";
 
 function Master() {
   return (
@@ -29,6 +30,7 @@ function Master() {
           <img className="aspect-[6/4] w-[460px] 2xl:w-[740px]" src={image1} />
         </div>
       </div>
+      <Sponsor />
       <Price />
       <Info />
       {/* <MobileFooter /> */}
