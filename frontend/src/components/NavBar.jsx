@@ -18,7 +18,9 @@ function NavBar({ stateChanger }) {
     setMail(null);
     localStorage.setItem("UserToken", token);
     localStorage.setItem("UserEmail", mail);
-    window.location.href = "/home";
+    setTimeout(() => {
+      window.location.href = "/home";
+    }, 500);
   };
 
   const handleLogin = () => {
