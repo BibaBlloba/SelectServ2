@@ -34,7 +34,9 @@ const Footer = () => {
           <div className="flex gap-2">
             <a>
               <Button color="default" variant="outlined" shape="circle">
-                <FaTelegramPlane />
+                <a href="https://t.me/SelectServOff" target="_blank">
+                  <FaTelegramPlane color="#5EB5F7" />
+                </a>
               </Button>
             </a>
             <a>
@@ -43,8 +45,10 @@ const Footer = () => {
               </Button>
             </a>
             <a>
-              <Button color="default" variant="outlined" shape="circle">
-                <FaYoutube />
+              <Button color="danger" variant="outlined" shape="circle">
+                <a href="https://youtu.be/dQw4w9WgXcQ?si=kZmdDEeWsQ7c97mi" target="_blank">
+                  <FaYoutube />
+                </a>
               </Button>
             </a>
             <a>
