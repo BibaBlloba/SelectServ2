@@ -1,13 +1,13 @@
 import { Button, Modal } from "antd";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../context/UserContext";
 import LoginContainer from "./LoginContainer";
 
 const ButtonConsole = () => {
   const [loginModal, setLoginModal] = useState(false);
-
+  const [token] = useState(localStorage.getItem("UserToken"));
   const handleChange = () => {
-    if (localStorage.getItem("UserToken")) {
+    if (token != "null") {
       window.location.href = "/console";
     } else {
       setLoginModal(true);
@@ -31,5 +31,4 @@ const ButtonConsole = () => {
     </>
   );
 };
-
 export default ButtonConsole;
