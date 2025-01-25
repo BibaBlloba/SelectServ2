@@ -25,7 +25,7 @@ const Footer = () => {
             target="_blank"
             className=""
           >
-            Руководство Пользователя
+            Предметная область
           </a>
           <a className="">API</a>
         </div>
@@ -46,7 +46,10 @@ const Footer = () => {
             </a>
             <a>
               <Button color="danger" variant="outlined" shape="circle">
-                <a href="https://youtu.be/dQw4w9WgXcQ?si=kZmdDEeWsQ7c97mi" target="_blank">
+                <a
+                  href="https://youtu.be/dQw4w9WgXcQ?si=kZmdDEeWsQ7c97mi"
+                  target="_blank"
+                >
                   <FaYoutube />
                 </a>
               </Button>
