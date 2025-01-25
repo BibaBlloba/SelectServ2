@@ -3,6 +3,7 @@ import { Button } from "antd";
 import image1 from "../assets/image1.png";
 import { Info, Footer, MobileFooter, Price } from "./index";
 import Sponsor from "./Sponsor";
+import ButtonConsole from "./ButtonConsole";
 
 function Master() {
   return (
@@ -22,9 +23,7 @@ function Master() {
             Строим и поддерживаем IT-инфраструктуру компаний, которые создают
             и развивают цифровые продукты.
           </div>
-          <Button variant="contained" className="flex" danger type="primary">
-            В панель управления
-          </Button>
+          <ButtonConsole />
         </div>
         <div className="hidden min-[1000px]:inline">
           <img className="aspect-[6/4] w-[460px] 2xl:w-[740px]" src={image1} />
