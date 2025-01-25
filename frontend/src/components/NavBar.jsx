@@ -5,13 +5,13 @@ import MobileDrawer from "./MobileDrawer";
 import { useContext, useState } from "react";
 import { UserContext } from "../context/UserContext";
 import LoginContainer from "./LoginContainer";
-import { Tooltip } from 'antd';
+import { Tooltip } from "antd";
+import ButtonConsole from "./ButtonConsole.jsx";
 
 function NavBar({ stateChanger }) {
   const [token, setToken] = useContext(UserContext);
   const [mail, setMail] = useState(localStorage.getItem("UserEmail"));
   const [loginModal, setLoginModal] = useState(false);
-
 
   const handleLogout = () => {
     setToken(null);
@@ -46,13 +46,19 @@ function NavBar({ stateChanger }) {
       </ul>
       <div className="flex justify-end items-center flex-1 space-x-5">
         {token && <a>{mail}</a>}
-        <Tooltip title={window.location.href == "http://localhost:5173/" ? '' : 'Работает только на главном экране'}>
+        <Tooltip
+          title={
+            window.location.href == "http://localhost:5173/"
+              ? ""
+              : "Работает только на главном экране"
+          }
+        >
           <a href="#Chad">
             <Button
               variant="outlined"
               className="sm:flex hidden"
               danger
-              onClick={() => stateChanger('state')}
+              onClick={() => stateChanger("state")}
             >
               Гигачад
             </Button>
@@ -68,16 +74,7 @@ function NavBar({ stateChanger }) {
             Логин
           </Button>
         )}
-        <a href="/profile">
-          <Button
-            variant="contained"
-            className="sm:flex hidden"
-            danger
-            type="primary"
-          >
-            В панель управления
-          </Button>
-        </a>
+        <ButtonConsole />
         <MobileDrawer />
         {token && (
           <Button
