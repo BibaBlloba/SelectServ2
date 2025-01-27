@@ -4,9 +4,9 @@ import { Button } from "antd";
 const Footer = () => {
   return (
     <div className="bg-slate-900 text-gray-400 p-5 sm:flex hidden flex-col justify-start">
-      <h1 className="text-xl sm:text-2xl font-medium mb-8 text-gray-300">
+      <a className="text-xl sm:text-2xl font-medium mb-8 text-gray-300" href="/">
         Select Serv
-      </h1>
+      </a>
 
       <div className="flex justify-start gap-20 pl-5 text-gray-200">
         <div className="flex flex-col gap-1">
@@ -27,7 +27,7 @@ const Footer = () => {
           >
             Предметная область
           </a>
-          <a className="">API</a>
+          <a className="" href="https://github.com/BibaBlloba/SelectServ2" target="_blank">GitHub</a>
         </div>
         <div>
           <h1 className="mb-2 text-gray-400">Соц. Сети</h1>
