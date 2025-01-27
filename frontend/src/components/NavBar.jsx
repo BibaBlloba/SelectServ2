@@ -45,7 +45,7 @@ function NavBar({ stateChanger }) {
         ))}
       </ul>
       <div className="flex justify-end items-center flex-1 space-x-5">
-        {token && <a>{mail}</a>}
+        {token && <a href="/profile">{mail}</a>}
         <Tooltip
           title={
             window.location.href == "http://localhost:5173/"
