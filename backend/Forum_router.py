@@ -1,8 +1,9 @@
-from fastapi import APIRouter, Body
+from fastapi import APIRouter, Body, Depends, Query
 
 from database import async_session
+from dependencies.fastapi_users import current_superuser, current_user
 from dependencies.messages import PaginationDap
-from models import ForumMessages
+from models import ForumMessages, UserModel
 from repos.messages import MessagesRepository
 from schemas.messages import Messages, MessagesAdd
 
@@ -37,5 +38,16 @@ async def create_message(
 ):
     async with async_session() as session:
         result = await MessagesRepository(session).add(message_data)
+        await session.commit()
+        return result
+
+
+@router.delete("/delete/{message_id}")
+async def delete_message(
+    message_id: int,
+    user: UserModel = Depends(current_superuser),
+):
+    async with async_session() as session:
+        result = await MessagesRepository(session).delete(id=message_id)
         await session.commit()
         return result

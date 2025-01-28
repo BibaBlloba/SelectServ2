@@ -23,3 +23,8 @@ class BaseRepository:
         stmt = insert(self.model).values(**data.model_dump())
         result = await self.session.execute(stmt)
         return result.scalars().one_or_none()
+
+    async def delete(self, **filter_by):
+        stmt = delete(self.model).filter_by(**filter_by)
+        result = await self.session.execute(stmt)
+        return {"status": "ok"}
