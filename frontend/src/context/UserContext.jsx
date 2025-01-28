@@ -5,6 +5,7 @@ export const UserContext = createContext();
 export const UserProvider = (props) => {
   const [token, setToken] = useState(localStorage.getItem("UserToken"))
   const [email, setEmail] = useState(localStorage.getItem("UserEmail"))
+  const [isSuper, setIsSuper] = useState(false)
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -24,13 +25,16 @@ export const UserProvider = (props) => {
       }
       localStorage.setItem("UserToken", token)
       localStorage.setItem("UserEmail", email)
+      if (data.is_superuser) {
+        setIsSuper(true)
+      }
     }
     fetchUser();
 
-  }, [token, email])
+  }, [token, email, isSuper])
 
   return (
-    <UserContext.Provider value={[token, setToken]}>
+    <UserContext.Provider value={[token, setToken, isSuper]}>
       {props.children}
     </UserContext.Provider>
   )
