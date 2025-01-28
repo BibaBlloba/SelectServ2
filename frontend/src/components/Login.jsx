@@ -94,7 +94,12 @@ const Login = () => {
           },
         ]}
       >
-        <Input />
+        <Input.Password
+          visibilityToggle={{
+            visible: pwdVisible,
+            onVisibleChange: setPwdVisible,
+          }}
+        />
       </Form.Item>
       <ErrorMessage message={errorMessage} />
       <Form.Item label={null}>
