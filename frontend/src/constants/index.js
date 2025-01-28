@@ -11,6 +11,10 @@ export const navLinks = [
     id: "price",
     title: "Цены",
   },
+  {
+    id: "forum",
+    title: "Форум",
+  },
 ];
 
 export const pricing = [

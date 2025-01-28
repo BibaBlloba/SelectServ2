@@ -6,6 +6,7 @@ import {
   Profile,
   Console,
   Footer,
+  Forum,
 } from "./components";
 import {
   BrowserRouter,
@@ -71,6 +72,7 @@ function App() {
           <Route path="price" element={<Price />} />
           <Route path="auth" element={<MasterRegister />} />
           <Route path="tst" element={<Test />} />
+          <Route path="forum" element={<Forum />} />
           <Route path="console" element={<UnderConstruction Chad={secret} />} />
           <Route path="profile" element={<Profile />}>
             {/* <Route path="nav1" element={<ProfileGeneral />} /> */}
