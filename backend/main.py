@@ -46,9 +46,13 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# @app.on_event("startup")
-# async def startup():
-#     await create_superuser()
+
+@app.on_event("startup")
+async def startup():
+    try:
+        await create_superuser()
+    except:
+        pass
 
 
 # @app.on_event("startup")

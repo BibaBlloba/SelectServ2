@@ -45,6 +45,7 @@ async def create_superuser(
         is_active=is_active,
         is_superuser=is_superuser,
         is_verified=is_verified,
+        phone_number=None,
     )
     async with async_session() as session:
         async with get_users_db_context(session) as users_db:
