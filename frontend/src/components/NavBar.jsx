@@ -2,14 +2,14 @@ import { Modal } from "antd";
 import { navLinks } from "../constants";
 import { Button } from "antd";
 import MobileDrawer from "./MobileDrawer";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../context/UserContext";
 import LoginContainer from "./LoginContainer";
 import { Tooltip } from "antd";
 import ButtonConsole from "./ButtonConsole.jsx";
 
 function NavBar({ stateChanger }) {
-  const [token, setToken] = useContext(UserContext);
+  const [token, setToken, isSuper] = useContext(UserContext);
   const [mail, setMail] = useState(localStorage.getItem("UserEmail"));
   const [loginModal, setLoginModal] = useState(false);
 
@@ -34,6 +34,7 @@ function NavBar({ stateChanger }) {
   return (
     <nav className="z-20 w-full flex py-4 justify-between items-center sm:px-10  px-6 sticky top-0 text-white bg-gradient-to-r to-black from-[#701E1E] font-mainFont">
       <span className="absolute top-[-100000px]" id="Chad"></span>
+      {isSuper && <h1 className="text-blue-600 text-xl mr-8">Админ</h1>}
       <a href="/">
         <h1 className="text-xl sm:text-2xl  font-medium">Select Serv</h1>
       </a>
