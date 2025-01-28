@@ -12,8 +12,13 @@ const Forum = () => {
   const [data, setData] = useState(null)
   const [loaded, setLoaded] = useState(false)
   const [token, setToken] = useContext(UserContext);
+  const [isSuper] = useContext(UserContext);
   const [loginModal, setLoginModal] = useState(false);
   const [mail, setMail] = useState(localStorage.getItem("UserEmail"));
+
+  const handleDelete = (name) => {
+    console.log(name)
+  }
 
   const sendMessage = async (values) => {
     if (token) {
@@ -88,6 +93,14 @@ const Forum = () => {
             <div className="flex flex-col items-center mb-[15px]">
               <div className='flex justify-center items-center border-[1px] bg-[#171E29] border-[#31435D] rounded-md aspect-square m-2 h-[128px] w-[128px]'>{message.user_email}</div>
               <p>{message.user_email}</p>
+              {isSuper &&
+                <button className="mt-3 w-[100px] h-[35px] transition-colors delay-100 hover:border-red-600 hover:text-red-600  active:bg-red-900 border-solid border-[1px] rounded-md"
+                  name={message.id}
+                  onClick={() => handleDelete(`${message.id}`)}
+                >
+                  Удалить
+                </button>
+              }
             </div>
             <div className="flex flex-col text-wrap p-[10px] gap-4">
               <p>{message.message}</p>
