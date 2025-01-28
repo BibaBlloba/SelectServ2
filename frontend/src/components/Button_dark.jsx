@@ -9,7 +9,9 @@ const Button_dark = ({ className, onClick, href, text, dark, white }) => {
         ${white ? "text-white" : "text-gray-300 "}
         ${white ? "border-white" : "border-gray-300 "}
         w-[100px] h-[35px]
-        transition-colors delay-100 hover:border-red-600 hover:text-red-600  active:bg-red-900`}
+        transition-colors delay-100 hover:border-red-600 hover:text-red-600  active:bg-red-900
+        ${className}
+        `}
         onClick={onClick}>{text}</button>
     </>
   )
