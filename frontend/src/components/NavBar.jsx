@@ -47,6 +47,7 @@ function NavBar({ stateChanger }) {
       <div className="flex justify-end items-center flex-1 space-x-5">
         {token && <a href="/profile">{mail}</a>}
         <Tooltip
+          // FIX: WTH with this path?
           title={
             window.location.href == "http://localhost:5173/"
               ? ""

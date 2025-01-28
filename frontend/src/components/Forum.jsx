@@ -12,10 +12,22 @@ const Forum = () => {
   const [loaded, setLoaded] = useState(false)
   const [token, setToken] = useContext(UserContext);
   const [loginModal, setLoginModal] = useState(false);
+  const [mail, setMail] = useState(localStorage.getItem("UserEmail"));
 
   const sendMessage = async (values) => {
     if (token) {
-      console.log(values)
+      const requestOptions = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          user_id: 1,
+          user_email: mail,
+          message: values.message,
+        })
+      }
+
+      await fetch("http://localhost:8000/forum/create_message", requestOptions)
+      window.location.reload()
     } else {
       setLoginModal(true);
     }
@@ -67,10 +79,10 @@ const Forum = () => {
           </Form.Item>
         </Form>
       </div>
-      <div className='flex flex-col gap-5'>
+      <div className='flex flex-col-reverse gap-5'>
         {data && data.map((message) => (
           <div key={message.id} className='border-2 border-black min-h-28 flex flex-row'>
-            <div className='flex justify-center items-center border-2 border-black aspect-square m-2 max-h-[128px]'>{message.user_email}</div>
+            <div className='flex justify-center items-center border-2 border-black aspect-square m-2 h-[128px] w-[128px]'>{message.user_email}</div>
             <div className="flex flex-col text-wrap">
               <p>{message.user_email}</p>
               <p>{message.message}</p>
