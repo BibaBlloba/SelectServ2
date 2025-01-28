@@ -8,6 +8,7 @@ const Register = () => {
   const [status, setStatus] = useState(0)
   const [errorMessage, setErrorMessage] = useState("")
   const [successMessage, setSuccessMessage] = useState("")
+  const [pwdVisible, setPwdVisible] = useState(false)
   const URL_LOGIN = "http://localhost:8000/login"
 
   const Login = async (values) => {
@@ -94,7 +95,12 @@ const Register = () => {
           },
         ]}
       >
-        <Input />
+        <Input.Password
+          visibilityToggle={{
+            visible: pwdVisible,
+            onVisibleChange: setPwdVisible,
+          }}
+        />
       </Form.Item>
       <Form.Item
         label="Повторите пароль"
@@ -106,7 +112,12 @@ const Register = () => {
           },
         ]}
       >
-        <Input />
+        <Input.Password
+          visibilityToggle={{
+            visible: pwdVisible,
+            onVisibleChange: setPwdVisible,
+          }}
+        />
       </Form.Item>
       <ErrorMessage message={errorMessage} />
       <ErrorMessage message={successMessage} success />
