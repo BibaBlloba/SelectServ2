@@ -139,7 +139,9 @@ const Forum = () => {
           </div>
         ))}
       </div>
-      <ForumPagination page={page} Left={() => handlePaginationLeft()} Right={() => handlePaginationRight()} />
+      {data && data.length >= 3 && (
+        <ForumPagination page={page} Left={() => handlePaginationLeft()} Right={() => handlePaginationRight()} />
+      )}
       <Modal open={loginModal} onCancel={handleCancel}>
         <LoginContainer />
       </Modal>
