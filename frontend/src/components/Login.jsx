@@ -7,6 +7,7 @@ import ErrorMessage from './ErrorMessage';
 const Login = () => {
 
   const [errorMessage, setErrorMessage] = useState("")
+  const [pwdVisible, setPwdVisible] = useState(false)
   const URL_LOGIN = "/api/login"
   const URL_ME = "/api/users/me"
 

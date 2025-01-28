@@ -9,7 +9,7 @@ const Register = () => {
   const [errorMessage, setErrorMessage] = useState("")
   const [successMessage, setSuccessMessage] = useState("")
   const [pwdVisible, setPwdVisible] = useState(false)
-  const URL_LOGIN = "http://localhost:8000/login"
+  const URL_LOGIN = "/api/login"
 
   const Login = async (values) => {
 
