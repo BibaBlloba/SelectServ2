@@ -2,6 +2,7 @@ import { Drawer } from "@mui/material";
 import { Button } from "antd";
 import { useState } from "react";
 import { navLinks } from "../constants";
+import Button_dark from "./Button_dark";
 
 function MobileDrawer() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -27,6 +28,7 @@ function MobileDrawer() {
               <a href={`${nav.id}`}>{nav.title}</a>
             </div>
           ))}
+          <Button_dark text={"reload"} onClick={() => window.location.reload()} />
         </div>
       </Drawer>
     </>
