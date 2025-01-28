@@ -8,6 +8,29 @@ const Register = () => {
   const [status, setStatus] = useState(0)
   const [errorMessage, setErrorMessage] = useState("")
   const [successMessage, setSuccessMessage] = useState("")
+  const URL_LOGIN = "http://localhost:8000/login"
+
+  const Login = async (values) => {
+
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: JSON.stringify(`grant_type=password&username=${values.email}&password=${values.password}&scope=&client_id=string&client_secret=string`)
+    }
+
+    const response = await fetch(URL_LOGIN, requestOptions)
+    const data = await response.json()
+
+    if (!response.ok) {
+      setErrorMessage("Неверный логин или пароль")
+    } else {
+      console.log(data)
+      localStorage.setItem("UserToken", data.access_token)
+    }
+    setTimeout(() => {
+      window.location.reload()
+    }, 500);
+  }
 
   const onFinish = async (values) => {
 
@@ -32,6 +55,7 @@ const Register = () => {
       setSuccessMessage("Пользователь зарегестрирован")
     }
     setStatus(response.status)
+    Login(values)
 
   };
 

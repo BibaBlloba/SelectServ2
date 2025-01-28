@@ -4,9 +4,6 @@ import { useState } from 'react';
 import { FaGoogle, FaSteam, FaYandex } from 'react-icons/fa'
 import ErrorMessage from './ErrorMessage';
 
-
-
-
 const Login = () => {
 
   const [errorMessage, setErrorMessage] = useState("")
