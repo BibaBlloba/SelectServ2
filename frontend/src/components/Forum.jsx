@@ -4,6 +4,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { Input, Form } from 'antd'
 import Button_dark from './Button_dark'
 import { UserContext } from '../context/UserContext';
+import ForumPagination from "./ForumPagination";
 const { TextArea } = Input;
 
 const Forum = () => {
@@ -14,6 +15,24 @@ const Forum = () => {
   const [token, setToken, isSuper] = useContext(UserContext);
   const [loginModal, setLoginModal] = useState(false);
   const [mail, setMail] = useState(localStorage.getItem("UserEmail"));
+
+  // TODO: Fix pagination loading
+  const handlePaginationRight = () => {
+    setPage(page + 1)
+    setTimeout(() => {
+      getMessages()
+    }, 50)
+  }
+
+  const handlePaginationLeft = () => {
+    if (page - 1 > 0) {
+      setPage(page - 1)
+    }
+    setTimeout(() => {
+      getMessages()
+    }, 50)
+  }
+
 
   const handleDelete = async (values) => {
     const requestOptions = {
@@ -70,7 +89,7 @@ const Forum = () => {
   }, [])
 
   return (
-    <div className='min-h-screen flex flex-col p-[10px] gap-10 overflow-hidden bg-[#171E29]'>
+    <div className='min-h-screen flex flex-col p-[10px] gap-10 overflow-hidden bg-[#171E29] pb-10'>
       {token ? (
         <div className='bg-[#1F2B3B] border-[#31435D] border-[1px] rounded-md h-[210px] flex flex-col p-[10px] px-[20px]'>
           <Form onFinish={sendMessage}>
@@ -98,6 +117,7 @@ const Forum = () => {
       ) : <div className='bg-[#1F2B3B] border-[#31435D] border-[1px] rounded-md h-[100px] flex justify-center items-center p-[10px] px-[20px]'>
         <Button_dark text={"Зарегестрироваться"} className="w-[200px]" onClick={() => setLoginModal(true)} />
       </div>}
+      <ForumPagination page={page} Left={() => handlePaginationLeft()} Right={() => handlePaginationRight()} />
       <div className='flex flex-col-reverse gap-5'>
         {data && data.map((message) => (
           <div key={message.id} className='border-[1px] border-[#31435D]  bg-[#1F2B3B] rounded-md  min-h-28 flex flex-row text-white'>
@@ -119,6 +139,7 @@ const Forum = () => {
           </div>
         ))}
       </div>
+      <ForumPagination page={page} Left={() => handlePaginationLeft()} Right={() => handlePaginationRight()} />
       <Modal open={loginModal} onCancel={handleCancel}>
         <LoginContainer />
       </Modal>
