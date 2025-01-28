@@ -48,4 +48,4 @@ class ForumMessages(Base):
     user_id: Mapped[int] = mapped_column()
     user_email: Mapped[str] = mapped_column()
 
-    message: Mapped[str] = mapped_column(String(1000))
+    message: Mapped[str] = mapped_column(String(10000))
