@@ -7,9 +7,9 @@ import ErrorMessage from './ErrorMessage';
 const Login = () => {
 
   const [errorMessage, setErrorMessage] = useState("")
+  const [pwdVisible, setPwdVisible] = useState(false)
   const URL_LOGIN = "http://localhost:8000/login"
   const URL_ME = "http://localhost:8000/users/me"
-  const [pwdVisible, setPwdVisible] = useState(false)
 
   const Redir = () => {
     window.location.reload()
