@@ -1,11 +1,25 @@
 import { Drawer } from "@mui/material";
 import { Button } from "antd";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { navLinks } from "../constants";
 import Button_dark from "./Button_dark";
+import { UserContext } from "../context/UserContext";
 
 function MobileDrawer() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [token, setToken, isSuper] = useContext(UserContext);
+  const [mail, setMail] = useState(localStorage.getItem("UserEmail"));
+
+  const handleLogout = () => {
+    setToken(null);
+    setMail(null);
+    localStorage.setItem("UserToken", null);
+    localStorage.setItem("UserEmail", null);
+    setTimeout(() => {
+      window.location.reload()
+    }, 50);
+  };
+
   return (
     <>
       <Button
@@ -28,7 +42,7 @@ function MobileDrawer() {
               <a href={`${nav.id}`}>{nav.title}</a>
             </div>
           ))}
-          <Button_dark text={"reload"} onClick={() => window.location.reload()} />
+          <Button_dark text={"Выход"} onClick={handleLogout} />
         </div>
       </Drawer>
     </>

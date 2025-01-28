@@ -7,6 +7,7 @@ import { UserContext } from "../context/UserContext";
 import LoginContainer from "./LoginContainer";
 import { Tooltip } from "antd";
 import ButtonConsole from "./ButtonConsole.jsx";
+import { IoHomeSharp } from "react-icons/io5";
 
 function NavBar({ stateChanger }) {
   const [token, setToken, isSuper] = useContext(UserContext);
@@ -34,8 +35,18 @@ function NavBar({ stateChanger }) {
   return (
     <nav className="z-20 w-full flex py-4 justify-between items-center sm:px-10  px-6 sticky top-0 text-white bg-gradient-to-r to-black from-[#701E1E] font-mainFont">
       <span className="absolute top-[-100000px]" id="Chad"></span>
-      {isSuper && <h1 className="text-blue-600 text-xl mr-8">Админ</h1>}
-      <a href="/">
+      {isSuper && <h1 className="text-blue-600 text-xl mr-8 hidden sm:block">Админ</h1>}
+      <div className="sm:hidden block">
+        {token ? (
+          <a href="/"><IoHomeSharp className="text-2xl text-gray-200" /></a>
+        ) : (
+          <a href="/" className="">
+            <h1 className="text-xl sm:text-2xl font-medium">Select Serv</h1>
+          </a>
+        )
+        }
+      </div >
+      <a href="/" className="hidden sm:block">
         <h1 className="text-xl sm:text-2xl  font-medium">Select Serv</h1>
       </a>
       <ul className="list-none min-[840px]:flex hidden justify-start items-center flex-1 ml-9">
@@ -93,7 +104,7 @@ function NavBar({ stateChanger }) {
       <Modal open={loginModal} onCancel={handleCancel}>
         <LoginContainer />
       </Modal>
-    </nav>
+    </nav >
   );
 }
 
