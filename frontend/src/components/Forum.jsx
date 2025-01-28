@@ -27,7 +27,7 @@ const Forum = () => {
         })
       }
 
-      await fetch("http://localhost:8000/forum/create_message", requestOptions)
+      await fetch("/api/forum/create_message", requestOptions)
       window.location.reload()
     } else {
       setLoginModal(true);
@@ -42,7 +42,7 @@ const Forum = () => {
         "Content-Type": "application/json",
       }
     }
-    const response = await fetch(`http://localhost:8000/forum/get_all?page=${page}`, requestOptions)
+    const response = await fetch(`/api/forum/get_all?page=${page}`, requestOptions)
     const resp = await response.json()
     setData(resp)
     setLoaded(true)

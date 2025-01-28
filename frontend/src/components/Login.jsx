@@ -10,8 +10,8 @@ import ErrorMessage from './ErrorMessage';
 const Login = () => {
 
   const [errorMessage, setErrorMessage] = useState("")
-  const URL_LOGIN = "http://localhost:8000/login"
-  const URL_ME = "http://localhost:8000/users/me"
+  const URL_LOGIN = "/api/login"
+  const URL_ME = "/api/users/me"
 
   const Redir = () => {
     window.location.href = '/profile';
@@ -55,7 +55,7 @@ const Login = () => {
     console.log('Failed: ', errorInfo);
   }
 
-  const API_URL = "http://localhost:8000";
+  const API_URL = "/api";
 
   const $api = axios.create({
     withCredentials: true,
