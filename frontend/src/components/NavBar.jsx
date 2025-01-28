@@ -19,7 +19,7 @@ function NavBar({ stateChanger }) {
     localStorage.setItem("UserToken", token);
     localStorage.setItem("UserEmail", mail);
     setTimeout(() => {
-      window.location.href = "/";
+      window.location.href = "/home";
     }, 500);
   };
 
