@@ -71,29 +71,33 @@ const Forum = () => {
 
   return (
     <div className='min-h-screen flex flex-col p-[10px] gap-10 overflow-hidden bg-[#171E29]'>
-      <div className='bg-[#1F2B3B] border-[#31435D] border-[1px] rounded-md h-[210px] flex flex-col p-[10px] px-[20px]'>
-        <Form onFinish={sendMessage}>
-          <p className="text-white mb-[5px]">Оставте сообщение</p>
-          <Form.Item
-            name="message"
-            rules={[
-              {
-                required: true,
-                message: "Пожалуйста, оставте сообщение",
-              },
-            ]}
-          >
-            <TextArea rows={4} style={{
-              resize: 'none',
-              backgroundColor: '#171E29',
-              color: 'white',
-            }} />
-          </Form.Item>
-          <Form.Item>
-            <Button_dark text={"Отправить"} />
-          </Form.Item>
-        </Form>
-      </div>
+      {token ? (
+        <div className='bg-[#1F2B3B] border-[#31435D] border-[1px] rounded-md h-[210px] flex flex-col p-[10px] px-[20px]'>
+          <Form onFinish={sendMessage}>
+            <p className="text-white mb-[5px]">Оставте сообщение</p>
+            <Form.Item
+              name="message"
+              rules={[
+                {
+                  required: true,
+                  message: "Пожалуйста, оставте сообщение",
+                },
+              ]}
+            >
+              <TextArea rows={4} style={{
+                resize: 'none',
+                backgroundColor: '#171E29',
+                color: 'white',
+              }} />
+            </Form.Item>
+            <Form.Item>
+              <Button_dark text={"Отправить"} />
+            </Form.Item>
+          </Form>
+        </div>
+      ) : <div className='bg-[#1F2B3B] border-[#31435D] border-[1px] rounded-md h-[100px] flex justify-center items-center p-[10px] px-[20px]'>
+        <Button_dark text={"Зарегестрироваться"} className="w-[200px]" onClick={() => setLoginModal(true)} />
+      </div>}
       <div className='flex flex-col-reverse gap-5'>
         {data && data.map((message) => (
           <div key={message.id} className='border-[1px] border-[#31435D]  bg-[#1F2B3B] rounded-md  min-h-28 flex flex-row text-white'>
