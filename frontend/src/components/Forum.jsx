@@ -23,7 +23,7 @@ const Forum = () => {
         Authorization: "Bearer " + token,
       }
     }
-    const response = await fetch(`http://localhost:8000/forum/delete/${values}`, requestOptions)
+    const response = await fetch(`/api/forum/delete/${values}`, requestOptions)
     window.location.reload()
   }
 
