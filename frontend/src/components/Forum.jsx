@@ -11,13 +11,20 @@ const Forum = () => {
   const [page, setPage] = useState(1)
   const [data, setData] = useState(null)
   const [loaded, setLoaded] = useState(false)
-  const [token, setToken] = useContext(UserContext);
-  const [isSuper] = useContext(UserContext);
+  const [token, setToken, isSuper] = useContext(UserContext);
   const [loginModal, setLoginModal] = useState(false);
   const [mail, setMail] = useState(localStorage.getItem("UserEmail"));
 
-  const handleDelete = (name) => {
-    console.log(name)
+  const handleDelete = async (values) => {
+    const requestOptions = {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      }
+    }
+    const response = await fetch(`http://localhost:8000/forum/delete/${values}`, requestOptions)
+    window.location.reload()
   }
 
   const sendMessage = async (values) => {
