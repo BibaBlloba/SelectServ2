@@ -1,6 +1,6 @@
 services:
   frontend:
-    container_name: frontendDev2
+    container_name: frontend
     build: ./frontend/
     depends_on:
       - backend
@@ -10,10 +10,8 @@ services:
       - net
 
   backend:
-    container_name: backendDev2
+    container_name: backend
     build: ./backend/
-    depends_on:
-      - postgres
     ports:
       - "8000:8000"
     volumes:
@@ -21,23 +19,8 @@ services:
     networks:
       - net
 
-  postgres:
-    container_name: postgresDev2
-    image: postgres:latest
-    environment:
-      POSTGRES_DB: "postgres"
-      POSTGRES_USER: "user"
-      POSTGRES_PASSWORD: "123"
-      PGDATA: /data/postgres
-    ports:
-      - "5432:5432"
-    volumes:
-      - ./data:/var/lib/postgresql/data/postgres
-    networks:
-      - net
-
   nginx:
-    container_name: nginxDev2
+    container_name: nginx
     image: nginx:stable-alpine
     ports:
       - "80:80"
