@@ -18,6 +18,7 @@ import users_router
 from actions.create_superuser import create_superuser
 from database import *
 from dependencies.fastapi_users import current_superuser, current_user
+from Forum_router import router as forum_router
 from logs import log
 from models import *
 
@@ -56,6 +57,7 @@ app.add_middleware(
 
 
 app.include_router(APIRouter_v1.router)
+app.include_router(forum_router)
 
 
 async def db(session: AsyncSession = Depends(create_async_session)):
@@ -73,4 +75,4 @@ async def create_tables():
 
 
 if __name__ == "__main__":
-    uvicorn.run("main:app", host="0.0.0.0", port=8000)
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
