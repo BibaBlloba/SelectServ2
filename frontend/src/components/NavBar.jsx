@@ -19,7 +19,7 @@ function NavBar({ stateChanger }) {
     localStorage.setItem("UserToken", token);
     localStorage.setItem("UserEmail", mail);
     setTimeout(() => {
-      window.location.href = "/home";
+      window.location.reload()
     }, 500);
   };
 
@@ -46,7 +46,7 @@ function NavBar({ stateChanger }) {
         ))}
       </ul>
       <div className="flex justify-end items-center flex-1 space-x-5">
-        {token && <a href="/profile">{mail}</a>}
+        {mail != 'null' && <a href="/profile">{mail}</a>}
         <Tooltip
           // FIX: WTH with this path?
           title={

@@ -4,9 +4,6 @@ import { useState } from 'react';
 import { FaGoogle, FaSteam, FaYandex } from 'react-icons/fa'
 import ErrorMessage from './ErrorMessage';
 
-
-
-
 const Login = () => {
 
   const [errorMessage, setErrorMessage] = useState("")
@@ -14,7 +11,7 @@ const Login = () => {
   const URL_ME = "/api/users/me"
 
   const Redir = () => {
-    window.location.href = '/profile';
+    window.location.reload()
   }
 
   const onFinish = async (values) => {
