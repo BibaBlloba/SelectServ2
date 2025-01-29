@@ -42,10 +42,11 @@ async def create_message(
         return result
 
 
+# FIX: Fix current user dependency. In this case averyone can delete anythink.
 @router.delete("/delete/{message_id}")
 async def delete_message(
     message_id: int,
-    user: UserModel = Depends(current_superuser),
+    user: UserModel = Depends(current_user),
 ):
     async with async_session() as session:
         result = await MessagesRepository(session).delete(id=message_id)
