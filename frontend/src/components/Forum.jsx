@@ -12,9 +12,8 @@ const Forum = () => {
   const [page, setPage] = useState(1)
   const [data, setData] = useState(null)
   const [loaded, setLoaded] = useState(false)
-  const [token, setToken, isSuper] = useContext(UserContext);
+  const [token, setToken, isSuper, user_id, email] = useContext(UserContext);
   const [loginModal, setLoginModal] = useState(false);
-  const [mail, setMail] = useState(localStorage.getItem("UserEmail"));
 
   function getStringBeforeCharacter(str, char) {
     // Найдите индекс указанного символа
@@ -65,8 +64,8 @@ const Forum = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          user_id: 1,
-          user_email: mail,
+          user_id: user_id,
+          user_email: email,
           message: values.message,
         })
       }
@@ -137,14 +136,15 @@ const Forum = () => {
             <div className="flex flex-col items-center mb-[5px] p-2 gap-2">
               <div className='flex justify-center items-center border-[1px] bg-[#171E29] border-[#31435D] rounded-md aspect-square sm:h-[128px] sm:w-[128px] h-[80px] w-[80px] text-xl overflow-hidden'>{getStringBeforeCharacter(message.user_email, '@')}</div>
               <p className="text-pretty">{getStringBeforeCharacter(message.user_email, '@')}</p>
-              {isSuper &&
+
+              {(isSuper || message.user_id == user_id) && (
                 <button className="mt-3 w-[100px] h-[35px] transition-colors delay-100 hover:border-red-600 hover:text-red-600  active:bg-red-900 border-solid border-[1px] rounded-md"
                   name={message.id}
                   onClick={() => handleDelete(`${message.id}`)}
                 >
                   Удалить
                 </button>
-              }
+              )}
             </div>
             <div className="flex flex-col text-wrap p-[10px] gap-4">
               <p>{message.message}</p>
@@ -152,13 +152,15 @@ const Forum = () => {
           </div>
         ))}
       </div>
-      {data && data.length >= 3 && (
-        <ForumPagination page={page} Left={() => handlePaginationLeft()} Right={() => handlePaginationRight()} />
-      )}
+      {
+        data && data.length >= 3 && (
+          <ForumPagination page={page} Left={() => handlePaginationLeft()} Right={() => handlePaginationRight()} />
+        )
+      }
       <Modal open={loginModal} onCancel={handleCancel}>
         <LoginContainer />
       </Modal>
-    </div>
+    </div >
   )
 }
 

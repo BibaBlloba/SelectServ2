@@ -45,7 +45,7 @@ class ForumMessages(Base):
     __tablename__ = "forumMessages"
 
     id: Mapped[int] = mapped_column(primary_key=True)
-    user_id: Mapped[int] = mapped_column()
+    user_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
     user_email: Mapped[str] = mapped_column()
 
     message: Mapped[str] = mapped_column(String(10000))
