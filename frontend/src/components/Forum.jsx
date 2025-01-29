@@ -135,7 +135,7 @@ const Forum = () => {
         {data && data.map((message) => (
           <div key={message.id} className='border-[1px] border-[#31435D]  bg-[#1F2B3B] rounded-md  min-h-28 flex flex-row text-white'>
             <div className="flex flex-col items-center mb-[5px] p-2 gap-2">
-              <div className='flex justify-center items-center border-[1px] bg-[#171E29] border-[#31435D] rounded-md aspect-square sm:h-[128px] sm:w-[128px] h-[80px] w-[80px] text-xl'>{getStringBeforeCharacter(message.user_email, '@')}</div>
+              <div className='flex justify-center items-center border-[1px] bg-[#171E29] border-[#31435D] rounded-md aspect-square sm:h-[128px] sm:w-[128px] h-[80px] w-[80px] text-xl overflow-hidden'>{getStringBeforeCharacter(message.user_email, '@')}</div>
               <p className="text-pretty">{getStringBeforeCharacter(message.user_email, '@')}</p>
               {isSuper &&
                 <button className="mt-3 w-[100px] h-[35px] transition-colors delay-100 hover:border-red-600 hover:text-red-600  active:bg-red-900 border-solid border-[1px] rounded-md"
