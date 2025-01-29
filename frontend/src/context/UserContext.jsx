@@ -5,6 +5,7 @@ export const UserContext = createContext();
 export const UserProvider = (props) => {
   const [token, setToken] = useState(localStorage.getItem("UserToken"))
   const [email, setEmail] = useState(localStorage.getItem("UserEmail"))
+  const [user_id, setUser_id] = useState(null)
   const [isSuper, setIsSuper] = useState(false)
 
   useEffect(() => {
@@ -19,6 +20,7 @@ export const UserProvider = (props) => {
       const response = await fetch("/api/users/me", requestOptions)
       const data = await response.json()
       setEmail(data.email)
+      setUser_id(data.id)
       if (!response.ok) {
         setEmail(null);
         setToken(null);
@@ -28,13 +30,14 @@ export const UserProvider = (props) => {
       if (data.is_superuser) {
         setIsSuper(true)
       }
+      console.log(data)
     }
     fetchUser();
 
-  }, [token, email, isSuper])
+  }, [token, email, isSuper, user_id])
 
   return (
-    <UserContext.Provider value={[token, setToken, isSuper]}>
+    <UserContext.Provider value={[token, setToken, isSuper, user_id, email]}>
       {props.children}
     </UserContext.Provider>
   )
