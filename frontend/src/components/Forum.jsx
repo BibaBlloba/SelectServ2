@@ -153,7 +153,7 @@ const Forum = () => {
         ))}
       </div>
       {
-        data && data.length >= 3 && (
+        data && data.length >= 4 && (
           <ForumPagination page={page} Left={() => handlePaginationLeft()} Right={() => handlePaginationRight()} />
         )
       }
