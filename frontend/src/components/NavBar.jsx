@@ -10,15 +10,13 @@ import ButtonConsole from "./ButtonConsole.jsx";
 import { IoHomeSharp } from "react-icons/io5";
 
 function NavBar({ stateChanger }) {
-  const [token, setToken, isSuper] = useContext(UserContext);
-  const [mail, setMail] = useState(localStorage.getItem("UserEmail"));
   const [loginModal, setLoginModal] = useState(false);
+  const [token, setToken, isSuper, user_id, email] = useContext(UserContext);
 
   const handleLogout = () => {
     setToken(null);
-    setMail(null);
     localStorage.setItem("UserToken", token);
-    localStorage.setItem("UserEmail", mail);
+    localStorage.setItem("UserEmail", email);
     setTimeout(() => {
       window.location.reload()
     }, 500);
@@ -57,7 +55,7 @@ function NavBar({ stateChanger }) {
         ))}
       </ul>
       <div className="flex justify-end items-center flex-1 space-x-5">
-        {mail != 'null' && <a href="/profile">{mail}</a>}
+        {email != 'null' && <a href="/profile">{email}</a>}
         <Tooltip
           // FIX: WTH with this path?
           title={
