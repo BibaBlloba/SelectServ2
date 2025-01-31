@@ -1,8 +1,10 @@
 from pydantic import BaseModel
-from sqlalchemy import insert, select
+from sqlalchemy import asc, insert, select
+from sqlalchemy.sql.expression import nulls_last
 
 from models import UserModel
 from repos.base import BaseRepository
+from schemas.user import UserRead
 
 
 class UsersRepository(BaseRepository):
@@ -14,7 +16,11 @@ class UsersRepository(BaseRepository):
         offset,
     ):
         query = select(self.model)
-        query = query.limit(limit).offset(offset)
+        query = (
+            query.limit(limit)
+            .offset(offset)
+            .order_by(nulls_last(self.model.is_superuser.desc()))
+        )
 
         result = await self.session.execute(query)
         return result.scalars().all()
