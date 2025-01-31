@@ -14,10 +14,7 @@ const Admin_userTable = () => {
         Authorization: "Bearer " + token,
       },
     };
-    const response = await fetch(
-      `http://localhost:8000/users?page=${page}`,
-      requestOptions,
-    );
+    const response = await fetch(`/api/users?page=${page}`, requestOptions);
     const resp = await response.json();
     setData(resp);
     // FIX: remove console.log
