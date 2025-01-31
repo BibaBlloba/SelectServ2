@@ -66,7 +66,7 @@ const Admin_userTable = () => {
         Authorization: "Bearer " + token,
       }
     }
-    await fetch(`http://localhost:8000/users/${values}`, requestOptions)
+    await fetch(`/api/users/${values}`, requestOptions)
     handleClose()
     getUsers()
   }
@@ -82,7 +82,7 @@ const Admin_userTable = () => {
         is_superuser: true,
       })
     }
-    await fetch(`http://localhost:8000/users/${values}`, requestOptions)
+    await fetch(`/api/users/${values}`, requestOptions)
     handleClose()
     getUsers()
   }
@@ -98,7 +98,7 @@ const Admin_userTable = () => {
         is_superuser: false,
       })
     }
-    await fetch(`http://localhost:8000/users/${values}`, requestOptions)
+    await fetch(`/api/users/${values}`, requestOptions)
     handleClose()
     getUsers()
   }
