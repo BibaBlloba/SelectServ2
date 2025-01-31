@@ -12,7 +12,8 @@ import ProfileMoney from "./ProfileMoney.jsx";
 import ProfileNotifications from "./ProfileNotifications.jsx";
 import ProfileInfo from "./ProfileInfo.jsx";
 import Console from "./Console.jsx";
-import Forum from "./Forum.jsx"
+import Forum from "./Forum.jsx";
+import Admin from "./Admin.jsx";
 
 export {
   NavBar,
@@ -30,4 +31,5 @@ export {
   ProfileInfo,
   Console,
   Forum,
+  Admin,
 };

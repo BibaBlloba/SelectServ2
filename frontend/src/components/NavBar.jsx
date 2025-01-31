@@ -18,7 +18,7 @@ function NavBar({ stateChanger }) {
     localStorage.setItem("UserToken", token);
     localStorage.setItem("UserEmail", email);
     setTimeout(() => {
-      window.location.reload()
+      window.location.reload();
     }, 500);
   };
 
@@ -33,17 +33,22 @@ function NavBar({ stateChanger }) {
   return (
     <nav className="z-20 w-full flex py-4 justify-between items-center sm:px-10  px-6 sticky top-0 text-white bg-gradient-to-r to-black from-[#701E1E] font-mainFont">
       <span className="absolute top-[-100000px]" id="Chad"></span>
-      {isSuper && <h1 className="text-blue-600 text-xl mr-8 hidden sm:block">Админ</h1>}
+      {isSuper && (
+        <a href="/admin">
+          <h1 className="text-blue-600 text-xl mr-8 hidden sm:block">Админ</h1>
+        </a>
+      )}
       <div className="sm:hidden block">
         {token ? (
-          <a href="/"><IoHomeSharp className="text-2xl text-gray-200" /></a>
+          <a href="/">
+            <IoHomeSharp className="text-2xl text-gray-200" />
+          </a>
         ) : (
           <a href="/" className="">
             <h1 className="text-xl sm:text-2xl font-medium">Select Serv</h1>
           </a>
-        )
-        }
-      </div >
+        )}
+      </div>
       <a href="/" className="hidden sm:block">
         <h1 className="text-xl sm:text-2xl  font-medium">Select Serv</h1>
       </a>
@@ -55,7 +60,7 @@ function NavBar({ stateChanger }) {
         ))}
       </ul>
       <div className="flex justify-end items-center flex-1 space-x-5">
-        {email != 'null' && <a href="/profile">{email}</a>}
+        {email != "null" && <a href="/profile">{email}</a>}
         <Tooltip
           // FIX: WTH with this path?
           title={
@@ -102,7 +107,7 @@ function NavBar({ stateChanger }) {
       <Modal open={loginModal} onCancel={handleCancel}>
         <LoginContainer />
       </Modal>
-    </nav >
+    </nav>
   );
 }
 
