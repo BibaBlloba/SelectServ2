@@ -14,18 +14,9 @@ router = APIRouter(
     tags=["Users"],
 )
 
-# /me
-# /{id}
-router.include_router(
-    router=fastapi_users.get_users_router(
-        UserRead,
-        UserUpdate,
-    )
-)
-
 
 # /usersAdmin_userTable
-@router.get("/")
+@router.get("/all")
 async def get_all_users(
     pagination: PaginationDap,
     user: UserModel = Depends(current_superuser),
@@ -36,3 +27,13 @@ async def get_all_users(
             limit=per_page, offset=per_page * (pagination.page - 1)
         )
         return result
+
+
+# /me
+# /{id}
+router.include_router(
+    router=fastapi_users.get_users_router(
+        UserRead,
+        UserUpdate,
+    )
+)
