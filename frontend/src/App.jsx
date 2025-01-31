@@ -7,6 +7,7 @@ import {
   Console,
   Footer,
   Forum,
+  Admin,
 } from "./components";
 import {
   BrowserRouter,
@@ -61,7 +62,11 @@ function App() {
       <div
         className={`${secret ? "bg-[url(./assets/giga.jpg)] bg-contain" : "bg-gradient-to-r to-black from-[#701E1E]"}`}
       >
-        <NavBar stateChanger={() => { setSecret(!secret) }} />
+        <NavBar
+          stateChanger={() => {
+            setSecret(!secret);
+          }}
+        />
         <Routes>
           <Route path="/" element={<Master />}>
             <Route path="/" element={<Register />} />
@@ -73,6 +78,7 @@ function App() {
           <Route path="auth" element={<MasterRegister />} />
           <Route path="tst" element={<Test />} />
           <Route path="forum" element={<Forum />} />
+          <Route path="admin" element={<Admin />} />
           <Route path="console" element={<UnderConstruction Chad={secret} />} />
           <Route path="profile" element={<Profile />}>
             {/* <Route path="nav1" element={<ProfileGeneral />} /> */}
