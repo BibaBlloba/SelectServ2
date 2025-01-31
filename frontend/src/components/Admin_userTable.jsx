@@ -15,7 +15,7 @@ const Admin_userTable = () => {
       },
     };
     const response = await fetch(
-      `http://localhost:8000/users?page=${page}`,
+      `http://localhost:8000/users/all?page=${page}`,
       requestOptions,
     );
     const resp = await response.json();

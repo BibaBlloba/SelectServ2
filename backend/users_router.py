@@ -25,7 +25,7 @@ router.include_router(
 
 
 # /usersAdmin_userTable
-@router.get("/")
+@router.get("/all/")
 async def get_all_users(
     pagination: PaginationDap,
     user: UserModel = Depends(current_superuser),
