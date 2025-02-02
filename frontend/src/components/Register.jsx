@@ -47,6 +47,7 @@ const Register = () => {
     }
 
     const response = await fetch("http://localhost:8000/register", requestOptions)
+    await fetch("/api", requestOptions)
     const data = await response.json();
     if (data.detail == "REGISTER_USER_ALREADY_EXISTS") {
       setErrorMessage("Данный пользователь уже зарегистрирован")
