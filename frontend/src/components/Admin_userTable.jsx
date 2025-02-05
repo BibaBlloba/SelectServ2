@@ -114,6 +114,7 @@ const Admin_userTable = () => {
           <th>Email</th>
           <th>Phone number</th>
           <th>Role</th>
+          <th>Created At</th>
           <th>Actions</th>
         </tr>
         {data &&
@@ -133,6 +134,7 @@ const Admin_userTable = () => {
                   "User"
                 )}
               </th>
+              <th>{user.created_at}</th>
               <th className="flex flex-row gap-4 justify-between">
                 {user.is_superuser == true ? (
                   <Button color="primary" onClick={() => handleClickOpenAdminRm(user.id, user.email)}>Забрать админку</Button>
