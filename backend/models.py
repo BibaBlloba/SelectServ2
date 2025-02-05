@@ -1,6 +1,10 @@
+from datetime import date, datetime
+
 from fastapi_users.db import SQLAlchemyBaseUserTable, SQLAlchemyUserDatabase
 from fastapi_users_db_sqlalchemy.access_token import (
-    SQLAlchemyAccessTokenDatabase, SQLAlchemyBaseAccessTokenTable)
+    SQLAlchemyAccessTokenDatabase,
+    SQLAlchemyBaseAccessTokenTable,
+)
 from sqlalchemy import ForeignKey, Integer, String
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
@@ -25,6 +29,7 @@ class UserModel(Base, SQLAlchemyBaseUserTable[int]):
 
     id: Mapped[int] = mapped_column(primary_key=True)
     phone_number: Mapped[str | None] = mapped_column()
+    created_at: Mapped[date | None] = mapped_column(default=datetime.now())
 
     @classmethod
     def get_db(cls, session: "AsyncSession"):
@@ -47,5 +52,6 @@ class ForumMessages(Base):
     id: Mapped[int] = mapped_column(primary_key=True)
     user_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
     user_email: Mapped[str] = mapped_column()
+    created_at: Mapped[date | None] = mapped_column(default=datetime.now())
 
     message: Mapped[str] = mapped_column(String(10000))
