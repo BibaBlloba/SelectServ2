@@ -151,8 +151,9 @@ const Forum = () => {
                 <p>{message.message}</p>
               </div>
             </div>
-            <div className="flex flex-col text-wrap p-[10px] gap-4">
+            <div className="flex flex-col text-wrap items-end p-[10px] gap-4">
               <p className="text-gray-400">{message.created_at}</p>
+              <p className="text-gray-400">{message.time}</p>
             </div>
           </div>
         ))}
