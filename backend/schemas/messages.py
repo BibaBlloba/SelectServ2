@@ -6,7 +6,7 @@ from pydantic import BaseModel, ConfigDict, EmailStr, Field
 class MessagesAdd(BaseModel):
     user_id: int
     user_email: EmailStr
-    message: str
+    message: str | None
 
 
 class Messages(MessagesAdd):
