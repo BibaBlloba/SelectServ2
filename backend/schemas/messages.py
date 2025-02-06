@@ -6,11 +6,11 @@ from pydantic import BaseModel, ConfigDict, EmailStr, Field
 class MessagesAdd(BaseModel):
     user_id: int
     user_email: EmailStr
-    message: str | None
+    message: str
 
 
 class Messages(MessagesAdd):
     id: int
-    created_at: date
+    created_at: date | None
 
     model_config = ConfigDict(from_attributes=True)
