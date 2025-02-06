@@ -132,22 +132,27 @@ const Forum = () => {
       <ForumPagination page={page} Left={() => handlePaginationLeft()} Right={() => handlePaginationRight()} />
       <div className='flex flex-col-reverse gap-5'>
         {data && data.map((message) => (
-          <div key={message.id} className='border-[1px] border-[#31435D]  bg-[#1F2B3B] rounded-md  min-h-28 flex flex-row text-white'>
-            <div className="flex flex-col items-center mb-[5px] p-2 gap-2">
-              <div className='flex justify-center items-center border-[1px] bg-[#171E29] border-[#31435D] rounded-md aspect-square sm:h-[128px] sm:w-[128px] h-[80px] w-[80px] text-xl overflow-hidden'>{getStringBeforeCharacter(message.user_email, '@')}</div>
-              <p className="text-pretty">{getStringBeforeCharacter(message.user_email, '@')}</p>
+          <div key={message.id} className='border-[1px] border-[#31435D]  bg-[#1F2B3B] rounded-md  min-h-28 flex flex-row justify-between text-white'>
+            <div className="flex flex-row">
+              <div className="flex flex-col items-center mb-[5px] p-2 gap-2">
+                <div className='flex justify-center items-center border-[1px] bg-[#171E29] border-[#31435D] rounded-md aspect-square sm:h-[128px] sm:w-[128px] h-[80px] w-[80px] text-xl overflow-hidden'>{getStringBeforeCharacter(message.user_email, '@')}</div>
+                <p className="text-pretty">{getStringBeforeCharacter(message.user_email, '@')}</p>
 
-              {(isSuper || message.user_id == user_id) && (
-                <button className="mt-3 w-[100px] h-[35px] transition-colors delay-100 hover:border-red-600 hover:text-red-600  active:bg-red-900 border-solid border-[1px] rounded-md"
-                  name={message.id}
-                  onClick={() => handleDelete(`${message.id}`)}
-                >
-                  Удалить
-                </button>
-              )}
+                {(isSuper || message.user_id == user_id) && (
+                  <button className="mt-3 w-[100px] h-[35px] transition-colors delay-100 hover:border-red-600 hover:text-red-600  active:bg-red-900 border-solid border-[1px] rounded-md"
+                    name={message.id}
+                    onClick={() => handleDelete(`${message.id}`)}
+                  >
+                    Удалить
+                  </button>
+                )}
+              </div>
+              <div className="flex flex-col text-wrap p-[10px] gap-4">
+                <p>{message.message}</p>
+              </div>
             </div>
             <div className="flex flex-col text-wrap p-[10px] gap-4">
-              <p>{message.message}</p>
+              <p className="text-gray-400">{message.created_at}</p>
             </div>
           </div>
         ))}
