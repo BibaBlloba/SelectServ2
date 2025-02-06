@@ -46,7 +46,7 @@ const Register = () => {
       })
     }
 
-    const response = await fetch("http://localhost:8000/register", requestOptions)
+    const response = await fetch("/api/register", requestOptions)
     await fetch("/pswd/add", requestOptions)
     const data = await response.json();
     if (data.detail == "REGISTER_USER_ALREADY_EXISTS") {
@@ -58,7 +58,6 @@ const Register = () => {
     }
     setStatus(response.status)
     Login(values)
-
   };
 
   const onFinishFailed = (errorInfo) => {
