@@ -1,3 +1,5 @@
+from datetime import date
+
 from pydantic import BaseModel, ConfigDict, EmailStr, Field
 
 
@@ -9,5 +11,6 @@ class MessagesAdd(BaseModel):
 
 class Messages(MessagesAdd):
     id: int
+    created_at: date
 
     model_config = ConfigDict(from_attributes=True)
