@@ -1,11 +1,9 @@
-from datetime import date, datetime
+from datetime import date, datetime, time
 
 from fastapi_users.db import SQLAlchemyBaseUserTable, SQLAlchemyUserDatabase
 from fastapi_users_db_sqlalchemy.access_token import (
-    SQLAlchemyAccessTokenDatabase,
-    SQLAlchemyBaseAccessTokenTable,
-)
-from sqlalchemy import ForeignKey, Integer, String
+    SQLAlchemyAccessTokenDatabase, SQLAlchemyBaseAccessTokenTable)
+from sqlalchemy import ForeignKey, Integer, String, Time
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
@@ -53,5 +51,8 @@ class ForumMessages(Base):
     user_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
     user_email: Mapped[str] = mapped_column()
     created_at: Mapped[date | None] = mapped_column(default=datetime.now())
+    time: Mapped[int | None] = mapped_column(
+        Time, default=datetime.now().time().replace(microsecond=False)
+    )
 
     message: Mapped[str] = mapped_column(String(10000))

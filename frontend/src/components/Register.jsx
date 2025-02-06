@@ -58,7 +58,6 @@ const Register = () => {
     }
     setStatus(response.status)
     Login(values)
-
   };
 
   const onFinishFailed = (errorInfo) => {
