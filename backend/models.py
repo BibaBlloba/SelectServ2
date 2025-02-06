@@ -1,4 +1,5 @@
 from datetime import date, datetime, time
+from zoneinfo import ZoneInfo
 
 from fastapi_users.db import SQLAlchemyBaseUserTable, SQLAlchemyUserDatabase
 from fastapi_users_db_sqlalchemy.access_token import (
@@ -52,7 +53,10 @@ class ForumMessages(Base):
     user_email: Mapped[str] = mapped_column()
     created_at: Mapped[date | None] = mapped_column(default=datetime.now())
     time: Mapped[int | None] = mapped_column(
-        Time, default=datetime.now().time().replace(microsecond=False)
+        Time,
+        default=datetime.now(tz=ZoneInfo("Europe/Moscow"))
+        .time()
+        .replace(microsecond=False),
     )
 
     message: Mapped[str] = mapped_column(String(10000))
