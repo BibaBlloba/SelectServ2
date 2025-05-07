@@ -17,15 +17,10 @@ const SidebarPro = () => {
   const [token, setToken, isSuper, user_id, email] = useContext(UserContext);
 
   function getStringBeforeCharacter(str, char) {
-    // Найдите индекс указанного символа
     const index = str.indexOf(char);
-
-    // Если символ найден, верните подстроку до этого символа
     if (index !== -1) {
       return str.slice(0, index);
     }
-
-    // Если символ не найден, верните оригинальную строку или что-то другое по вашему усмотрению
     return str;
   }
 

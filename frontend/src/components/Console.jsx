@@ -1,8 +1,13 @@
 import React from 'react'
+import Slider from './console/Slider'
+import { Outlet } from 'react-router-dom'
 
 const Console = () => {
   return (
-    <div>Console</div>
+    <div className='min-h-screen bg-white flex flex-row'>
+      <Slider />
+      <Outlet />
+    </div>
   )
 }
 

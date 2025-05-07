@@ -4,10 +4,10 @@ import {
   Price,
   MasterRegister,
   Profile,
-  Console,
   Footer,
   Forum,
   Admin,
+  Console,
 } from "./components";
 import {
   BrowserRouter,
@@ -15,12 +15,14 @@ import {
   Route,
   Routes,
 } from "react-router-dom";
+import General from './components/console/General';
 import Register from "./components/Register";
 import Login from "./components/Login";
 import Page404 from "./components/Page404";
 import Test from "./components/Test";
 import { useState } from "react";
 import UnderConstruction from "./components/UnderConstruction";
+import Rent from "./components/console/Rent";
 
 const router = createBrowserRouter([
   {
@@ -79,7 +81,11 @@ function App() {
           <Route path="tst" element={<Test />} />
           <Route path="forum" element={<Forum />} />
           <Route path="admin" element={<Admin />} />
-          <Route path="console" element={<UnderConstruction Chad={secret} />} />
+          <Route path="console" element={<Console />}>
+            <Route index element={<General />} />
+            <Route path="general" element={<General />} />
+            <Route path="rent" element={<Rent />} />
+          </Route>
           <Route path="profile" element={<Profile />}>
             {/* <Route path="nav1" element={<ProfileGeneral />} /> */}
             {/* <Route path="nav2" element={<ProfileMoney />} /> */}
