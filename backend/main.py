@@ -51,6 +51,7 @@ app.add_middleware(
 async def startup():
     try:
         await create_superuser()
+        # await create_tables_on_startup()
     except:
         pass
 

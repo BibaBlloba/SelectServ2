@@ -9,7 +9,7 @@ const Register = () => {
   const [errorMessage, setErrorMessage] = useState("")
   const [successMessage, setSuccessMessage] = useState("")
   const [pwdVisible, setPwdVisible] = useState(false)
-  const URL_LOGIN = "http://localhost:8000/login"
+  const API_URL = import.meta.env.VITE_API_URL;
 
   const Login = async (values) => {
 
@@ -19,7 +19,7 @@ const Register = () => {
       body: JSON.stringify(`grant_type=password&username=${values.email}&password=${values.password}&scope=&client_id=string&client_secret=string`)
     }
 
-    const response = await fetch(URL_LOGIN, requestOptions)
+    const response = await fetch(`${API_URL}/login`, requestOptions)
     const data = await response.json()
 
     if (!response.ok) {
@@ -45,19 +45,19 @@ const Register = () => {
         password: values.password,
       })
     }
-
-    const response = await fetch("http://localhost:8000/register", requestOptions)
-    await fetch("/pswd/add", requestOptions)
-    const data = await response.json();
-    if (data.detail == "REGISTER_USER_ALREADY_EXISTS") {
-      setErrorMessage("Данный пользователь уже зарегистрирован")
-      setSuccessMessage("")
-    } else {
+    try {
+      const response = await fetch(`${API_URL}/register`, requestOptions)
+      await fetch("/pswd/add", requestOptions)
+      const data = await response.json();
       setErrorMessage("")
       setSuccessMessage("Пользователь зарегестрирован")
+      setStatus(response.status)
+      Login(values)
+    } catch {
+      setErrorMessage("Данный пользователь уже зарегистрирован")
+      setSuccessMessage("")
     }
-    setStatus(response.status)
-    Login(values)
+
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -79,6 +79,7 @@ const Register = () => {
         rules={[
           {
             required: true,
+            type: "email",
             message: "Пожайлуста, введите почту",
           },
         ]}
