@@ -2,7 +2,7 @@ from pydantic import BaseModel
 from sqlalchemy import asc, insert, select
 from sqlalchemy.sql.expression import nulls_last
 
-from models import UserModel
+from models.user import UserModel
 from repos.base import BaseRepository
 from schemas.user import UserRead
 

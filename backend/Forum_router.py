@@ -3,7 +3,7 @@ from fastapi import APIRouter, Body, Depends, Query
 from database import async_session
 from dependencies.fastapi_users import current_superuser, current_user
 from dependencies.messages import PaginationDap
-from models import ForumMessages, UserModel
+from models.user import UserModel
 from repos.messages import MessagesRepository
 from schemas.messages import Messages, MessagesAdd
 

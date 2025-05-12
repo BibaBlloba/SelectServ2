@@ -1,13 +1,12 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy import select
 
-from dependencies.fastapi_users import fastapi_users
-from models import UserModel
+from database import async_session
+from dependencies.fastapi_users import current_superuser, current_user, fastapi_users
+from dependencies.messages import PaginationDap
+from models.user import UserModel
 from repos.users import UsersRepository
 from schemas.user import UserRead, UserUpdate
-from dependencies.fastapi_users import current_superuser, current_user
-from database import async_session
-from dependencies.messages import PaginationDap
 
 router = APIRouter(
     prefix="/users",

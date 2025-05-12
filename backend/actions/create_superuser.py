@@ -6,7 +6,7 @@ from database import async_session
 from dependencies.user_manager import get_user_manager
 from dependencies.users import get_user_db
 from logs import log
-from models import UserModel
+from models.user import UserModel
 from schemas.user import UserCreate
 from user_manager import UserManager
 

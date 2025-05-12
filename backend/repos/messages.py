@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 from sqlalchemy import insert, select
 
-from models import ForumMessages
+from models.forumMessages import ForumMessages
 from repos.base import BaseRepository
 from schemas.messages import Messages
 

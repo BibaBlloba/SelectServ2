@@ -33,7 +33,7 @@ body {
 
 .custom-tabs-white-text .ant-tabs-tab {
   color: white !important;
-  font-size: 20px !important;
+  font-size: 15px !important;
   margin-left: 20px;
   margin-right: 20px;
 }
@@ -100,4 +100,8 @@ body {
 
 .custom-form-item .ant-form-item-label>label {
   color: white;
+}
+
+.custom-slider .ant-slider-track {
+  background-color: #ff4d4f !important;
 }

@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 from sqlalchemy import delete, insert, select, update
 
-from models import Base
+from models.base import Base
 
 
 class BaseRepository:

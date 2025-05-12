@@ -1,6 +1,8 @@
 import React from 'react'
 import { Button, Col, Divider, Form, InputNumber, Row, Select, Slider, Tabs } from 'antd';
 import { useState } from 'react';
+import { FaRegTrashAlt } from "react-icons/fa";
+import { IconButton } from '@mui/material';
 
 
 const ServerConfiguratorTabList = () => {
@@ -32,17 +34,22 @@ const CustomServerConfiguratorTab = () => {
 
   return (
     <div className='flex flex-row justify-between'>
-      <div className='flex flex-col'>
-        <Form className='min-w-[300px]' layout='vertical'>
-          <Form.Item label='Регион' className="custom-form-item">
+      <div className='flex flex-col max-w-[500px]'>
+        <Form className='min-w-[300px]' layout='vertical'
+          onFinish={(values) => { console.log('Данные формы:', values, 'procCount:', inputValue) }}
+        >
+          <Form.Item label='Регион' className="custom-form-item" name='region'>
             <Select size='large' className='custom-select max-w-[200px] text-white' placeholder='Выберите регион'>
               <Select.Option value='asd'>asd</Select.Option>
             </Select>
           </Form.Item>
-          <Form.Item label='Процессор' className="custom-form-item">
+          <Form.Item label='Процессор' className="custom-form-item" name='proc'>
             <Select size='large' className='custom-select text-white' placeholder='Выберите модель'>
               <Select.Option value='asd'>asd</Select.Option>
+              <Select.Option value='asd2'>asd</Select.Option>
             </Select>
+          </Form.Item>
+          <Form.Item>
             <Row>
               <Col span={12}>
                 <Slider
@@ -50,6 +57,7 @@ const CustomServerConfiguratorTab = () => {
                   max={20}
                   onChange={onChange}
                   value={typeof inputValue === 'number' ? inputValue : 0}
+                  className='custom-slider'
                 />
               </Col>
               <Col span={4}>
@@ -65,35 +73,62 @@ const CustomServerConfiguratorTab = () => {
               </Col>
             </Row>
           </Form.Item>
-          <Form.Item label='Память' className="custom-form-item">
+          <Form.Item label='Память' className="custom-form-item" name='memory'>
             <Select size='large' className='custom-select text-white' placeholder='Выберите объем'>
               <Select.Option value='asd'>asd</Select.Option>
             </Select>
           </Form.Item>
-          <Form.Item label='Диск' className="custom-form-item">
+          <Form.Item label='Диск' className="custom-form-item" name='disk'>
             <Select size='large' className='custom-select text-white' placeholder='Выберите объем'>
               <Select.Option value='asd'>asd</Select.Option>
             </Select>
           </Form.Item>
         </Form>
+        <div className='border-[1px] border-[#586973] bg-[#2D3236] rounded-md min-h-[80px] p-5 flex justify-between items-center'>
+          <p>
+            Нет нужных комплектующих? Мы привезем их под заказ. Обратитесь в <a className='text-blue-500'>службу поддержки</a>.
+          </p>
+        </div>
       </div>
-      <div>
+      <div className='font-light'>
         <div className='text-white border-2 border-solid rounded-xl min-h-[500px] min-w-[400px] border-[#B5BDC2] p-5 flex flex-col gap-5'>
           <p className='text-[#586973]'>Сборка сервера 1-5 дней</p>
-          <div className='flex flex-row justify-between'>
-            <h1 className='text-xl'>Конфигурация</h1>
-            <Button>Сбросить форму</Button>
+          <div className='flex flex-row justify-between items-center'>
+            <h1 className='text-xl font-normal'>Конфигурация</h1>
+            <IconButton><FaRegTrashAlt className='text-[#586973] text-[20px]' /></IconButton>
           </div>
           <div className='flex flex-row justify-between'>
             <h1>Комплектующие</h1>
             <h1 className='text-xl'>asd</h1>
           </div>
           <Divider style={{ borderColor: 'white', margin: 0 }} />
-          <h1 className='text-[15px] font-bold'>Сервис</h1>
+          <h1 className='text-[15px] font-normal'>Сервис</h1>
           <h1>KVM-консоль</h1>
           <h1>Защита от DDOS</h1>
           <h1>Сборка сервера</h1>
           <Divider style={{ borderColor: 'white', margin: 0 }} />
+          <h1 className='font-normal'>Тариф</h1>
+          <Form
+            onFinish={(values) => { console.log(values) }}
+          >
+            <Form.Item name='time'>
+              <Select className='custom-select text-white' placeholder='Выберите тариф'>
+                <Select.Option value='1'>1 Месяц</Select.Option>
+                <Select.Option value='2'>2 Месяца</Select.Option>
+                <Select.Option value='3'>3 Месяца</Select.Option>
+                <Select.Option value='4'>1 Год</Select.Option>
+              </Select>
+            </Form.Item>
+            <Form.Item>
+              <div className='flex flex-row justify-between items-center text-white text-2xl font-light'>
+                <h1>Итого:</h1>
+                <h1>asd</h1>
+              </div>
+            </Form.Item>
+            <Form.Item>
+              <Button block htmlType='submit'>Заказать сервер</Button>
+            </Form.Item>
+          </Form>
         </div>
       </div>
     </div>

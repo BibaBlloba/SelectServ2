@@ -4,7 +4,10 @@ from alembic import context
 from sqlalchemy import engine_from_config, pool
 
 from config import settings
-from models import *
+from models.accessToken import AccessToken
+from models.base import Base
+from models.forumMessages import ForumMessages
+from models.user import RoleModel, UserModel
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

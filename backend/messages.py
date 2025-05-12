@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends
 
 from dependencies.fastapi_users import current_superuser, current_user
-from models import UserModel
+from models.user import UserModel
 from schemas.user import UserRead
 
 router = APIRouter(prefix="/messages")

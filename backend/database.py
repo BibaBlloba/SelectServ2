@@ -4,7 +4,8 @@ from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.ext.asyncio.session import async_sessionmaker
 
 from config import settings
-from models import AccessToken, Base
+from models.accessToken import AccessToken
+from models.base import Base
 
 async_engine = create_async_engine(settings.DATABASE_URL_asyncpg)
 

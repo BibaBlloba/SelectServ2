@@ -1,7 +1,6 @@
 from fastapi_users import FastAPIUsers
 
-from models import UserModel
-from user_manager import UserManager
+from models.user import UserModel
 
 from .auth_back import authentication_backend
 from .user_manager import get_user_manager
