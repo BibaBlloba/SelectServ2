@@ -30,3 +30,74 @@ body {
   font-weight: 400;
   padding: 10px 20px 10px 20px;
 }
+
+.custom-tabs-white-text .ant-tabs-tab {
+  color: white !important;
+  font-size: 20px !important;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.custom-tabs-white-text .ant-tabs-tab:hover {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.custom-tabs-white-text .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: #ff4d4f !important;
+  font-weight: bold;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.custom-tabs .ant-tabs-ink-bar {
+  background-color: #ff4d4f !important;
+  /* Красный */
+  height: 3px !important;
+  /* Толщина полоски (опционально) */
+}
+
+.no-border-tabs .ant-tabs-nav::before {
+  border-bottom: #292F34 !important;
+}
+
+/* Фон выпадающего меню */
+.custom-select .ant-select-dropdown {
+  background-color: #181D20 !important;
+  /* Серый фон */
+}
+
+/* Фон выбранного элемента */
+.custom-select .ant-select-item-option-selected {
+  background-color: #181D20 !important;
+  /* Темнее серый */
+}
+
+/* Фон при наведении */
+.custom-select .ant-select-item-option:hover {
+  background-color: #181D20 !important;
+  border-color: white;
+}
+
+/* Фон самого селекта (если нужно) */
+.custom-select .ant-select-selector {
+  background-color: #181D20 !important;
+  border-color: #353C41 !important;
+  color: white !important;
+}
+
+/* Изменение цвета placeholder */
+.custom-select .ant-select-selection-placeholder {
+  color: white !important;
+  /* Красный */
+  opacity: 0.8 !important;
+  /* Прозрачность (опционально) */
+}
+
+/* Для состояния "hover" */
+.custom-select:hover .ant-select-selection-placeholder {
+  color: white !important;
+}
+
+.custom-form-item .ant-form-item-label>label {
+  color: white;
+}
