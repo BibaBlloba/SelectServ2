@@ -8,6 +8,7 @@ from authx import AuthX, AuthXConfig
 from fastapi import (APIRouter, Depends, FastAPI, HTTPException, Response,
                      status)
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi_users.db import SQLAlchemyUserDatabase
 from pydantic import BaseModel
 from sqlalchemy.ext.asyncio.base import asyncstartablecontext
 from sqlalchemy.ext.asyncio.session import AsyncSession, async_sessionmaker
@@ -16,11 +17,13 @@ import APIRouter_v1
 import auth_router
 import users_router
 from actions.create_superuser import create_superuser
+from api.serverHardvare import router as hardware_router
 from database import *
 from dependencies.fastapi_users import current_superuser, current_user
 from Forum_router import router as forum_router
 from logs import log
 from models import *
+from models.user import UserModel
 
 sys.path.append(str(Path(__file__).parent.parent))
 
@@ -63,6 +66,7 @@ async def startup():
 
 app.include_router(APIRouter_v1.router)
 app.include_router(forum_router)
+app.include_router(hardware_router)
 
 
 async def db(session: AsyncSession = Depends(create_async_session)):

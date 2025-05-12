@@ -1,5 +1,7 @@
+from fastapi import HTTPException
 from pydantic import BaseModel
 from sqlalchemy import delete, insert, select, update
+from sqlalchemy.exc import IntegrityError
 
 from models.base import Base
 
@@ -19,9 +21,20 @@ class BaseRepository:
             for model in result.scalars().all()
         ]
 
+    async def get_filtered(self, **filter_by):
+        query = select(self.model).filter_by(**filter_by)
+        result = await self.session.execute(query)
+        return [
+            self.schema.model_validate(model, from_attributes=True)
+            for model in result.scalars().all()
+        ]
+
     async def add(self, data: BaseModel):
         stmt = insert(self.model).values(**data.model_dump())
-        result = await self.session.execute(stmt)
+        try:
+            result = await self.session.execute(stmt)
+        except IntegrityError:
+            raise HTTPException(409, detail="Object alredy exists")
         return result.scalars().one_or_none()
 
     async def delete(self, **filter_by):

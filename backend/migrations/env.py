@@ -7,6 +7,7 @@ from config import settings
 from models.accessToken import AccessToken
 from models.base import Base
 from models.forumMessages import ForumMessages
+from models.serverHardware import RegionOrm, ServerHardwareOrm
 from models.user import RoleModel, UserModel
 
 # this is the Alembic Config object, which provides
