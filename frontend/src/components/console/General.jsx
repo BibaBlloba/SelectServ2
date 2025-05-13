@@ -34,7 +34,16 @@ const CustomServerConfiguratorTab = () => {
   const [totalValue, setTotalValue] = useState("0");
   const [totalValueTarif, setTotalValueTarif] = useState(0);
   const [tarifValue, setTarifValue] = useState(1);
+  const [hardwareList, setHardwareList] = useState({
+    region: "",
+    hardware_ids: [],
+    tarif: 1
+  });
   const API_URL = import.meta.env.VITE_API_URL;
+
+  const handleRentServer = () => {
+    console.log(hardwareList)
+  }
 
   const onChange = newValue => {
     setInputValue(newValue);
@@ -56,10 +65,10 @@ const CustomServerConfiguratorTab = () => {
   const handleFormChange = async (changedValues, allValues) => {
     try {
       const data = allValues
+      console.log(changedValues)
       const values = Object.entries(data)
-        .filter(([key, value]) => key !== 'region' && value !== undefined)
+        .filter(([key, value]) => value !== undefined)
         .map(([_, value]) => value);
-      console.log(values)
       const response = await axios.get(`${API_URL}/hardware/calculate`,
         {
           params: {
@@ -67,15 +76,24 @@ const CustomServerConfiguratorTab = () => {
           }
         }
       );
+      setHardwareList(prev => ({
+        ...prev,
+        region: allValues.region,
+        hardware_ids: values
+      }))
       setTotalValue(formatNumberWithSpaces(response.data))
     } catch (error) {
       console.error(error);
-
     }
   }
 
   const handleTarifChange = async (changedValues, allValues) => {
-    setTarifValue(parseInt(Object.values(changedValues)[0]))
+    const value = parseInt(Object.values(changedValues)[0])
+    setHardwareList(prev => ({
+      ...prev,
+      tarif: value
+    }))
+    setTarifValue(value)
   }
 
   useEffect(() => {
@@ -240,6 +258,7 @@ const CustomServerConfiguratorTab = () => {
             <Divider style={{ borderColor: 'white', margin: 0 }} />
             <h1 className='font-normal'>Тариф</h1>
             <Form
+              onFinish={handleRentServer}
               onValuesChange={handleTarifChange}
             >
               <Form.Item name='time'>

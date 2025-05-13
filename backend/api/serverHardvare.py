@@ -1,9 +1,10 @@
-from fastapi import APIRouter, HTTPException, Query
-from sqlalchemy.exc import DBAPIError
+from fastapi import APIRouter, Depends, HTTPException, Query
 
 from dependencies.database import DbDep
+from dependencies.fastapi_users import current_user
 from schemas.region import RegionAdd
 from schemas.serverHardware import ServerHardwareAdd, ServerHardwareAddRequest
+from schemas.user import UserRead
 
 router = APIRouter(prefix="/hardware", tags=["Server Hardware"])
 
@@ -47,3 +48,10 @@ async def get_all(db: DbDep):
 async def get_calculate_value(db: DbDep, ids: str = Query(default=None)):
     id_list = [int(id) for id in ids.split(",")]
     return await db.serverHardware.get_value(id_list)
+
+
+@router.post("/rent")
+async def rent_server(
+    user: UserRead = Depends(current_user),
+):
+    return user
