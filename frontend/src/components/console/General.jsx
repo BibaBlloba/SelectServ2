@@ -29,7 +29,11 @@ const ServerConfiguratorTab = () => {
 const CustomServerConfiguratorTab = () => {
   const [inputValue, setInputValue] = useState(1);
   const [loading, setLoading] = useState(true);
-  const [data, setData] = useState(null);
+  const [hardware, setHardware] = useState(null);
+  const [regions, setRegions] = useState(null);
+  const [totalValue, setTotalValue] = useState("0");
+  const [totalValueTarif, setTotalValueTarif] = useState(0);
+  const [tarifValue, setTarifValue] = useState(1);
   const API_URL = import.meta.env.VITE_API_URL;
 
   const onChange = newValue => {
@@ -40,13 +44,44 @@ const CustomServerConfiguratorTab = () => {
     setLoading(true);
     try {
       const response = await axios.get(`${API_URL}/hardware`);
-      setData(response.data);
+      setHardware(response.data.hardware || []);
+      setRegions(response.data.regions || []);
     } catch (error) {
       console.error("Error fetching hardware data:", error);
     } finally {
       setLoading(false);
     }
   };
+
+  const handleFormChange = async (changedValues, allValues) => {
+    try {
+      const data = allValues
+      const values = Object.entries(data)
+        .filter(([key, value]) => key !== 'region' && value !== undefined)
+        .map(([_, value]) => value);
+      console.log(values)
+      const response = await axios.get(`${API_URL}/hardware/calculate`,
+        {
+          params: {
+            ids: values.join(',')
+          }
+        }
+      );
+      setTotalValue(formatNumberWithSpaces(response.data))
+    } catch (error) {
+      console.error(error);
+
+    }
+  }
+
+  const handleTarifChange = async (changedValues, allValues) => {
+    setTarifValue(parseInt(Object.values(changedValues)[0]))
+  }
+
+  useEffect(() => {
+    setTotalValueTarif(parseInt(totalValue.replace(/\s+/g, ''), 10) * tarifValue)
+
+  }, [totalValue, tarifValue])
 
   useEffect(() => {
     get_hardware_data()
@@ -70,16 +105,23 @@ const CustomServerConfiguratorTab = () => {
         <div className='flex flex-col max-w-[500px]'>
           <Form className='min-w-[300px]' layout='vertical'
             onFinish={(values) => { console.log('Данные формы:', values, 'procCount:', inputValue) }}
+            onValuesChange={handleFormChange}
           >
             <Form.Item label='Регион' className="custom-form-item" name='region'>
               <Select size='large' className='custom-select max-w-[200px] text-white' placeholder='Выберите регион'>
-                <Select.Option value='asd'>asd</Select.Option>
+
+                {regions
+                  .map(item => (
+                    <Select.Option key={item.id} value={item.id}>{item.title}</Select.Option>
+                  ))
+                }
+
               </Select>
             </Form.Item>
             <Form.Item label='Процессор' className="custom-form-item" name='proc'>
               <Select size='large' className='custom-select text-white' placeholder='Выберите модель'>
 
-                {data && data
+                {hardware
                   .filter(item => item.type === 'processor')
                   .map(item => (
                     <Select.Option key={item.id} value={item.id}>
@@ -122,12 +164,42 @@ const CustomServerConfiguratorTab = () => {
             </Form.Item>
             <Form.Item label='Память' className="custom-form-item" name='memory'>
               <Select size='large' className='custom-select text-white' placeholder='Выберите объем'>
-                <Select.Option value='asd'>asd</Select.Option>
+
+                {hardware
+                  .filter(item => item.type === 'memory')
+                  .map(item => (
+                    <Select.Option key={item.id} value={item.id}>
+                      <div className='flex flex-row justify-between'>
+                        <h1>{item.title}</h1>
+                        <div className='flex flex-row items-center'>
+                          <h1>{formatNumberWithSpaces(item.value)}</h1>
+                          <MdCurrencyRuble />
+                        </div>
+                      </div>
+                    </Select.Option>
+                  ))
+                }
+
               </Select>
             </Form.Item>
             <Form.Item label='Диск' className="custom-form-item" name='disk'>
               <Select size='large' className='custom-select text-white' placeholder='Выберите объем'>
-                <Select.Option value='asd'>asd</Select.Option>
+
+                {hardware
+                  .filter(item => item.type === 'disk')
+                  .map(item => (
+                    <Select.Option key={item.id} value={item.id}>
+                      <div className='flex flex-row justify-between'>
+                        <h1>{item.title}</h1>
+                        <div className='flex flex-row items-center'>
+                          <h1>{formatNumberWithSpaces(item.value)}</h1>
+                          <MdCurrencyRuble />
+                        </div>
+                      </div>
+                    </Select.Option>
+                  ))
+                }
+
               </Select>
             </Form.Item>
           </Form>
@@ -146,7 +218,10 @@ const CustomServerConfiguratorTab = () => {
             </div>
             <div className='flex flex-row justify-between'>
               <h1>Комплектующие</h1>
-              <h1 className='text-xl'>asd</h1>
+              <div className='flex flex-row justify-between items-center'>
+                <h1 className='text-xl'>{totalValue}</h1>
+                <MdCurrencyRuble className='text-xl' />
+              </div>
             </div>
             <Divider style={{ borderColor: 'white', margin: 0 }} />
             <h1 className='text-[15px] font-normal'>Сервис</h1>
@@ -165,20 +240,23 @@ const CustomServerConfiguratorTab = () => {
             <Divider style={{ borderColor: 'white', margin: 0 }} />
             <h1 className='font-normal'>Тариф</h1>
             <Form
-              onFinish={(values) => { console.log(values) }}
+              onValuesChange={handleTarifChange}
             >
               <Form.Item name='time'>
                 <Select className='custom-select text-white' placeholder='Выберите тариф'>
                   <Select.Option value='1'>1 Месяц</Select.Option>
                   <Select.Option value='2'>2 Месяца</Select.Option>
                   <Select.Option value='3'>3 Месяца</Select.Option>
-                  <Select.Option value='4'>1 Год</Select.Option>
+                  <Select.Option value='12'>1 Год</Select.Option>
                 </Select>
               </Form.Item>
               <Form.Item>
                 <div className='flex flex-row justify-between items-center text-white text-2xl font-light'>
                   <h1>Итого:</h1>
-                  <h1>asd</h1>
+                  <div className='flex flex-row justify-between items-center'>
+                    <h1>{formatNumberWithSpaces(totalValueTarif)}</h1>
+                    <MdCurrencyRuble className='text-xl' />
+                  </div>
                 </div>
               </Form.Item>
               <Form.Item>

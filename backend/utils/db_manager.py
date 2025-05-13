@@ -1,4 +1,5 @@
 from repos.messages import MessagesRepository
+from repos.region import RegionRepository
 from repos.serverHardware import ServerHardwareRepository
 from repos.users import UsersRepository
 
@@ -13,6 +14,7 @@ class DbManager:
         self.messages = MessagesRepository(self.session)
         self.users = UsersRepository(self.session)
         self.serverHardware = ServerHardwareRepository(self.session)
+        self.region = RegionRepository(self.session)
 
         return self
 
